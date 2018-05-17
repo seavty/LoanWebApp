@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LoanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysDocument">
+          <Key>
+            <PropertyRef Name="docs_DocumentID" />
+          </Key>
+          <Property Name="docs_DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docs_CreatedBy" Type="int" />
+          <Property Name="docs_CreatedDate" Type="datetime" />
+          <Property Name="docs_UpdatedBy" Type="int" />
+          <Property Name="docs_UpdatedDate" Type="datetime" />
+          <Property Name="docs_Deleted" Type="int" />
+          <Property Name="docs_TableID" Type="int" />
+          <Property Name="docs_RecordID" Type="int" />
+          <Property Name="docs_Path" Type="nvarchar" MaxLength="1000" />
+          <Property Name="docs_Name" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblAccount">
+          <Key>
+            <PropertyRef Name="acct_AccountID" />
+          </Key>
+          <Property Name="acct_AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="acct_CreatedBy" Type="int" />
+          <Property Name="acct_CreatedDate" Type="datetime" />
+          <Property Name="acct_UpdatedBy" Type="int" />
+          <Property Name="acct_UpdatedDate" Type="datetime" />
+          <Property Name="acct_PhoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_Deleted" Type="int" />
+        </EntityType>
+        <EntityType Name="tblLoanRequest">
+          <Key>
+            <PropertyRef Name="loan_LoanRequestID" />
+          </Key>
+          <Property Name="loan_LoanRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loan_CreatedBy" Type="int" />
+          <Property Name="loan_CreatedDate" Type="datetime" />
+          <Property Name="loan_UpdatedBy" Type="int" />
+          <Property Name="loan_UpdatedDate" Type="datetime" />
+          <Property Name="loan_Deleted" Type="int" />
+          <Property Name="loan_AccountID" Type="int" />
+          <Property Name="loan_Amount" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="loan_PayDay" Type="int" />
+          <Property Name="loan_PayDate" Type="datetime" />
+          <Property Name="loan_LoanAmount" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="loan_InterestRate" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="loan_InterestAmount" Type="numeric" Precision="18" Scale="5" />
+        </EntityType>
+        <EntityContainer Name="LoanModelStoreContainer">
+          <EntitySet Name="sysDocument" EntityType="Self.sysDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAccount" EntityType="Self.tblAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLoanRequest" EntityType="Self.tblLoanRequest" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LoanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAccounts" EntityType="LoanModel.tblAccount" />
+          <EntitySet Name="sysDocuments" EntityType="LoanModel.sysDocument" />
+          <EntitySet Name="tblLoanRequests" EntityType="LoanModel.tblLoanRequest" />
+        </EntityContainer>
+        <EntityType Name="tblAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int32" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="phoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int32" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="tableID" Type="Int32" />
+          <Property Name="recordID" Type="Int32" />
+          <Property Name="path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblLoanRequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="Int32" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="accountID" Type="Int32" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="payDay" Type="Int32" />
+          <Property Name="payDate" Type="DateTime" Precision="3" />
+          <Property Name="loanAmount" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="interestRate" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="interestAmount" Type="Decimal" Precision="18" Scale="5" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoanModelStoreContainer" CdmEntityContainer="LoanEntities">
+          <EntitySetMapping Name="tblAccounts">
+            <EntityTypeMapping TypeName="LoanModel.tblAccount">
+              <MappingFragment StoreEntitySet="tblAccount">
+                <ScalarProperty Name="deleted" ColumnName="acct_Deleted" />
+                <ScalarProperty Name="email" ColumnName="acct_Email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="acct_PhoneNumber" />
+                <ScalarProperty Name="updatedDate" ColumnName="acct_UpdatedDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="acct_UpdatedBy" />
+                <ScalarProperty Name="createdDate" ColumnName="acct_CreatedDate" />
+                <ScalarProperty Name="createdBy" ColumnName="acct_CreatedBy" />
+                <ScalarProperty Name="id" ColumnName="acct_AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysDocuments">
+            <EntityTypeMapping TypeName="LoanModel.sysDocument">
+              <MappingFragment StoreEntitySet="sysDocument">
+                <ScalarProperty Name="name" ColumnName="docs_Name" />
+                <ScalarProperty Name="path" ColumnName="docs_Path" />
+                <ScalarProperty Name="recordID" ColumnName="docs_RecordID" />
+                <ScalarProperty Name="tableID" ColumnName="docs_TableID" />
+                <ScalarProperty Name="deleted" ColumnName="docs_Deleted" />
+                <ScalarProperty Name="updatedDate" ColumnName="docs_UpdatedDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="docs_UpdatedBy" />
+                <ScalarProperty Name="createdDate" ColumnName="docs_CreatedDate" />
+                <ScalarProperty Name="createdBy" ColumnName="docs_CreatedBy" />
+                <ScalarProperty Name="id" ColumnName="docs_DocumentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLoanRequests">
+            <EntityTypeMapping TypeName="LoanModel.tblLoanRequest">
+              <MappingFragment StoreEntitySet="tblLoanRequest">
+                <ScalarProperty Name="interestAmount" ColumnName="loan_InterestAmount" />
+                <ScalarProperty Name="interestRate" ColumnName="loan_InterestRate" />
+                <ScalarProperty Name="loanAmount" ColumnName="loan_LoanAmount" />
+                <ScalarProperty Name="payDate" ColumnName="loan_PayDate" />
+                <ScalarProperty Name="payDay" ColumnName="loan_PayDay" />
+                <ScalarProperty Name="amount" ColumnName="loan_Amount" />
+                <ScalarProperty Name="accountID" ColumnName="loan_AccountID" />
+                <ScalarProperty Name="deleted" ColumnName="loan_Deleted" />
+                <ScalarProperty Name="updatedDate" ColumnName="loan_UpdatedDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="loan_UpdatedBy" />
+                <ScalarProperty Name="createdDate" ColumnName="loan_CreatedDate" />
+                <ScalarProperty Name="createdBy" ColumnName="loan_CreatedBy" />
+                <ScalarProperty Name="id" ColumnName="loan_LoanRequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

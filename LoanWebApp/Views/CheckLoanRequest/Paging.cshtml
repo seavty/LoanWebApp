@@ -1,0 +1,29 @@
+﻿@model LoanWebApp.Models.DTO.GetListDTO<LoanWebApp.Models.DTO.CheckLoanRequest.CheckLoanRequestViewDTO>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col" width="65px">#</th>
+            <th scope="col"> Phone Number </th>
+            <th scope="col"> E-mail </th>
+            <th scope="col"> Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 0;}
+        @foreach (var item in Model.items)
+        {
+            
+            <tr>
+                <th scope="row"> @(Model.metaData.startRow + i) </th>
+                <td> @item.account.phoneNumber </td>
+                <td> @item.account.email  </td>
+                <td> <a href="Details/@item.account.id"> Detail </a> </td>
+            </tr>
+            i++;
+
+        }
+
+@Html.Partial("~/Views/Pagination.cshtml", Model.metaData)
+
+

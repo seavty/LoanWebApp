@@ -1,0 +1,50 @@
+﻿@model LoanWebApp.Models.DTO.MetaDataDTO
+
+@{ int suplementRow = Model.supplementRow; }
+
+@if (Model.totalRecord ==0 )
+{
+    suplementRow = Model.pageSize;
+}
+
+    @for (int i = 0; i < suplementRow; i++)
+    {
+        <tr>
+            <th scope="row"> &nbsp; </th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        @* first page *@
+        <li class="page-item @Model.firstPageCssClass"><a class="page-link" href="javascript:onclick=paging(1)"> First </a></li>
+
+        @* previous page *@
+        <li class="page-item @Model.previousPageCssClass"><a class="page-link" href="javascript:onclick=paging(@Model.previousPage)"> Previous </a></li>
+
+        @* page number *@
+        @for (int i = Model.startPage; i <= Model.endPage; i++)
+        {
+            var isActiveCss = "";
+            if (Model.currentPage == i) { isActiveCss = "active"; }
+            <li class="page-item @isActiveCss"><a class="page-link" href="javascript:onclick=paging(@i)"> @i </a></li>
+        }
+        @* next page *@
+        <li class="page-item @Model.nextPageCssClass"> <a class="page-link" href="javascript:onclick=paging(@Model.nextPage)"> Next </a> </li>
+
+        @* last page *@
+        <li class="page-item @Model.lastPageCssClass"><a class="page-link" href="javascript:onclick=paging(@Model.totalPage)"> Last </a></li>
+
+    </ul>
+    <div style="text-align: center">
+        <span> showing @Model.startRow to @Model.endRow of @Model.totalRecord record(s) </span> <strong> | </strong><span> page @Model.currentPage of @Model.totalPage </span>
+    </div>
+</nav>
+
+<br/>

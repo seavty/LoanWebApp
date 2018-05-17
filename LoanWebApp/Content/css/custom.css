@@ -1,0 +1,86 @@
+﻿body {
+    font-family: 'Hind', sans-serif;
+    font-size: 1em;
+}
+
+
+.col-form-label {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.myPadding {
+    padding-bottom: 13px;
+}
+
+.label-display {
+    font-weight: 600;
+}
+
+.label-display-bottom-line {
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0px
+}
+
+.menu-right {
+    float: right;
+}
+
+.doubleBold {
+    font-weight: 900;
+    font-family: 'Merienda', cursive;
+}
+
+.panel-header-text {
+    font-family: 'Merienda', cursive;
+}
+
+.clear-navbar-magin-bottoom {
+    margin-bottom: 10px;
+}
+
+.my-box-shadow {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* top content */
+.top-content-display-label {
+    font-style:italic;
+    color: #99979c;
+}
+
+.top-content-image{
+    width:80px;
+    height:80px;
+}
+
+
+/* overide metro ui cs */
+.input-control {
+    margin:0px;
+}
+
+
+
+/* override bootstrap */
+.table tbody td {
+    padding:.525rem .60rem;
+}
+
+
+/* error */
+.error {
+    border-color:red;
+}
+
+.file-error {
+    background-color: red;
+}
+
+
+/* image */
+.image-register {
+    width:100%;
+    height:400px;
+}

@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form id="loanRequest" name="loanRequest">
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header"> Request </div>
+
+        <div class="card-body">
+            <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+            <hr />
+            <div class="form-group">
+                <label for="amount"> Amount (*): </label>
+                <select class="form-control required" id="amount" name="amount">
+                    <option value=""> -- Please Select Amount -- </option>
+                    <option value="10"> $ 10 </option>
+                    <option value="20"> $ 20 </option>
+                    <option value="50"> $ 50 </option>
+                    <option value="100"> $ 100 </option>
+                    <option value="200"> $ 200 </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payDay"> Pay day (*): </label>
+                <select class="form-control required" id="payDay" name="payDay">
+                    <option value=""> -- Please Select Pay Day -- </option>
+                    <option value="10"> 10 days </option>
+                    <option value="15"> 20 days </option>
+                    <option value="30"> 30 days </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payDay"> Pay Date (*): </label>
+                <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDay" placeholder="Enter pay date">
+            </div>
+
+
+            <div class="form-group">
+                <label for="payDay"> Loan Amount: </label>
+                <input class="form-control" type="text" id="loanAmount" name="loanAmount" readonly>
+            </div>
+
+            <input type="hidden" id="accountID" name="accountID" value="@ViewBag.accountID" />
+        </div>
+
+        <div class="card-footer text-muted">
+            <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        loanAmount();
+
+        $("#amount, #payDay").change(function () {
+            loanAmount();
+        });
+
+        $("#btnSumbit").click(function () {
+            handleSubmit();
+        });
+    });
+
+    //-> handleSubmit
+    function handleSubmit() {
+        var isOk = true;
+        $(".required").each(function (i, v) {
+            $(this).removeClass("is-invalid file-error error");
+            if ($(this).val() == "") {
+                if ($(this).attr('type') == "file")
+                    $(this).addClass("file-error")
+                else
+                    $(this).addClass("is-invalid")
+
+                isOk = false;
+                return;
+            }
+        });
+        
+        $.ajax({
+            url: "/LoanRequest/LoanRequest",
+            data: $("#loanRequest").serialize(),
+            type: "POST",
+            async: false,
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status);
+                return "error";
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                alert("Your request has been submitted successfully! ")
+            }
+        });
+    }
+
+    //-> loanAmount
+    function loanAmount() {
+        var amount = parseInt($("#amount").val()) ? parseInt($("#amount").val()) : 0;
+        var payDay = parseInt($("#payDay").val()) ? parseInt($("#payDay").val()) : 0;
+        var interest = 0;
+        var total = 0;
+        switch (payDay) {
+            case 10:
+                interest = 10;
+                break;
+            case 15:
+                interest = 15;
+                break;
+            case 30:
+                interest = 30;
+                break;
+            default:
+                interest = 0;
+        }
+        total = amount + (amount * interest / 100);
+        $("#loanAmount").val("$ " + parseFloat(total).toFixed(2));
+    }
+</script>

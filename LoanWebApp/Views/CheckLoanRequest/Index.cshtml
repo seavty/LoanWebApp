@@ -1,0 +1,70 @@
+﻿@model LoanWebApp.Models.DTO.GetListDTO<LoanWebApp.Models.DTO.CheckLoanRequest.CheckLoanRequestViewDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<form name="checkLoanRequest" id="checkLoanRequest">
+    @Html.AntiForgeryToken()
+    <div class="card" style="background-color:white">
+        <div class="card-header"> Find Load Account </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="phoneNumber"> Phone Number: </label>
+                        <input type="text" class="form-control required required" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumber" placeholder="Enter phone number">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="email"> E-mail: </label>
+                        <input type="text" class="form-control required required" id="email" name="email" aria-describedby="email" placeholder="Enter e-mail">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <div style="background-color:white">
+        <div id="tblCheckLoanRequest"></div>
+    </div>
+
+</form>
+
+
+
+<script>
+    $(document).ready(function () {
+        paging(1);
+    });
+
+    function paging(page) {
+        $.ajax({
+            url: "/CheckLoanRequest/Paging/" + page,
+            data: $("#register").serialize(),
+            type: "POST",
+            async: false,
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status);
+                return "error";
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                $("#tblCheckLoanRequest").html(data);
+            }
+        });
+
+    }
+
+</script>
+

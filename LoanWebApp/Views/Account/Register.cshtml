@@ -1,0 +1,85 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form name="register" id="register" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header"> Register </div>
+
+        <div class="card-body">
+            <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+            <hr />
+
+            <div class="form-group">
+                <label for="IDCard"> ID Card (*): </label>
+                <input type="file" class="form-control-file required files" name="idCard" id="idCard" accept=".png, .jpg, .jpeg">
+            </div>
+
+            <div class="form-group">
+                <label for="EmploymentLetter"> Employment Letter (*): </label>
+                <input type="file" class="form-control-file required files" id="employmentLetter" name="employmentLetter" accept=".png, .jpg, .jpeg">
+            </div>
+
+            <div class="form-group">
+                <label for="Bank Account"> Bank Account (*): </label>
+                <input type="file" class="form-control-file required files" id="bankAccount" name="bankAccount" accept=".png, .jpg, .jpeg">
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <label for="Phone Number"> Phone Number (*): </label>
+                <input type="text" class="form-control required" name="phoneNumber" id="phoneNumber" aria-describedby="txtPhoneNumber" placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="E-mail"> E-mail (*): </label>
+                <input type="text" class="form-control required required" name="email" id="email" aria-describedby="txtEmail" placeholder="Enter e-mail">
+            </div>
+
+        </div>
+
+        <div class="card-footer text-muted">
+            <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
+        </div>
+    </div>
+</form>
+
+<script src="~/Content/js/jquery-upload.js"></script>
+<script>
+    $("#btnSumbit").click(function () {
+        var isOk = true;
+        $(".required").each(function (i, v) {
+            $(this).removeClass("file-error error");
+            if ($(this).val() == "") {
+                if ($(this).attr('type') == "file")
+                    $(this).addClass("file-error")
+                else
+                    $(this).addClass("error")
+
+                isOk = false;
+                return;
+            }
+        });
+
+        if (isOk) {
+            $(".files").upload('/account/Register?' + $("#register").serialize(), function (data) {
+                
+                console.log(data);
+                console.log(data.substring(0, 2));
+                //window.location.href = "/loanRequest"
+                //if (data.substring(0, 2) == "ok")
+                if (data.substring(0, 2) == "ok")
+                    window.location.href = "/loanRequest/index" + data.replace("ok", "");
+                else
+                    alert("Error occur while processing your request...!");
+
+            });
+        }
+    });
+</script>
+
