@@ -8,6 +8,12 @@ namespace LoanWebApp.Models.DTO.Account
 {
     public class AccountViewDTO: AccountBaseDTO
     {
+        public string idCard { get; set; }
+        public string employmentLetter { get; set; }
+        public string bankAccount { get; set; }
+        public string status { get; set; }
+        public string statusCaption { get; set; }
+
         public List<DocumentViewDTO> documents { get; set; }
     }
 }

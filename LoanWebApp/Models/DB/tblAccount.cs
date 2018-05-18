@@ -22,5 +22,9 @@ namespace LoanWebApp.Models.DB
         public string phoneNumber { get; set; }
         public string email { get; set; }
         public Nullable<int> deleted { get; set; }
+        public string idCard { get; set; }
+        public string employmentLetter { get; set; }
+        public string bankAccount { get; set; }
+        public string status { get; set; }
     }
 }

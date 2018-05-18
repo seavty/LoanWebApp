@@ -168,6 +168,7 @@
     <Compile Include="Helpers\DoubleHelper.cs" />
     <Compile Include="Helpers\MappingHelper.cs" />
     <Compile Include="Helpers\PaginationHelper.cs" />
+    <Compile Include="Helpers\SelectionHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Models\DB\LoanModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -194,9 +195,11 @@
       <DependentUpon>LoanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\Account\AccountBaseDTO.cs" />
+    <Compile Include="Models\DTO\Account\AccountEditDTO.cs" />
     <Compile Include="Models\DTO\Account\AccountNewDTO.cs" />
     <Compile Include="Models\DTO\Account\AccountViewDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestBase.cs" />
+    <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestEditDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestViewDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentBaseDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentViewDTO.cs" />
@@ -224,6 +227,9 @@
     <Content Include="Content\js\jquery.fileupload.js" />
     <Content Include="Content\js\jquery_min.js" />
     <Content Include="Content\js\popper.min.js" />
+    <Content Include="Content\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\webfonts\fa-solid-900.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -250,6 +256,18 @@
     <Content Include="Models\DB\LoanModel.edmx.diagram">
       <DependentUpon>LoanModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -288,10 +306,12 @@
     <Content Include="Views\CheckLoanRequest\Paging.cshtml" />
     <Content Include="Views\Pagination.cshtml" />
     <Content Include="Views\CheckLoanRequest\Details.cshtml" />
+    <Content Include="Views\Shared\Main\Navbar.cshtml" />
+    <Content Include="Views\Shared\Main\Css.cshtml" />
+    <Content Include="Views\Shared\Main\JS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\font\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

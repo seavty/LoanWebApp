@@ -46,6 +46,39 @@ namespace LoanWebApp.Handlers
             return await Listing(currentPage, accounts);
         }
 
+        //-> Save
+        public async Task<CheckLoanRequestViewDTO> Save(CheckLoanRequestEditDTO checkLoanRequest)
+        {
+            checkLoanRequest = StringHelper.TrimStringProperties(checkLoanRequest);
+
+            tblAccount account = await db.tblAccounts.FirstOrDefaultAsync(a => a.deleted == null && a.id == checkLoanRequest.accountID);
+            if (account == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "This record has been deleted");
+
+            account = (tblAccount)MappingHelper.MapDTOToDBClass<CheckLoanRequestEditDTO, tblAccount>(checkLoanRequest, account);
+            account.updatedDate = DateTime.Now;
+            await db.SaveChangesAsync();
+            return await SelectByID(account.id);
+        }
+
+        //-> Save
+        public async Task<CheckLoanRequestViewDTO> SubmitForApproval(int accountID, string status)
+        {
+            tblAccount account = await db.tblAccounts.FirstOrDefaultAsync(a => a.deleted == null && a.id == accountID);
+            if (account == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "This record has been deleted");
+
+            account.updatedDate = DateTime.Now;
+            account.status = status;
+
+            //-- update submit for approval status here
+            //-- in Check Loan request form add status ; pending; submit for approval; approved, reject
+            await db.SaveChangesAsync();
+            return await SelectByID(account.id);
+        }
+
+
+
         //*** private method ***/
         private async Task<GetListDTO<CheckLoanRequestViewDTO>> Listing(int currentPage, IQueryable<tblAccount> accounts, string search = null)
         {

@@ -14,7 +14,6 @@ namespace LoanWebApp.Models.DTO.Account
         [MaxLength(100)]
         public string phoneNumber { get; set; }
 
-        
         [Required]
         [MaxLength(100)]
         public string email { get; set; }

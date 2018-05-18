@@ -28,6 +28,7 @@ namespace LoanWebApp.Handlers
                 throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
 
             var accountView = MappingHelper.MapDBClassToDTO<tblAccount, AccountViewDTO>(account);
+            accountView.statusCaption = SelectionHelper.AccountStatusCaption(account.status);
             accountView.documents = DocumentHelper.GetDocuments(db, ConstantHelper.TABLE_ACCOUNT_ID, account.id);
             return accountView;
         }

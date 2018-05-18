@@ -1,4 +1,5 @@
 ﻿using LoanWebApp.Handlers;
+using LoanWebApp.Models.DTO.CheckLoanRequest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,50 @@ namespace LoanWebApp.Controllers
         public async Task<ActionResult> Details(int id)
         {
             return View(await handler.SelectByID(id));
+        }
+
+        //-> Save
+        [HttpPost]
+        public async Task<ActionResult> Save(CheckLoanRequestEditDTO checkLoanRequest)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Response.StatusCode = 200;
+                    return Json(await handler.Save(checkLoanRequest), JsonRequestBehavior.AllowGet);
+                }
+                Response.StatusCode = 400;
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                //error should wirte to log file
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        //-> SubmitForApproval
+        [HttpPost]
+        public async Task<ActionResult> SubmitRequest(int id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Response.StatusCode = 200;
+                    return Json(await handler.SubmitForApproval(id, Request.Form["status"].ToString()), JsonRequestBehavior.AllowGet);
+                }
+                Response.StatusCode = 400;
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                //error should wirte to log file
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

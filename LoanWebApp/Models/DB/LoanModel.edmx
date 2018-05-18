@@ -32,6 +32,10 @@
           <Property Name="acct_PhoneNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="acct_Email" Type="nvarchar" MaxLength="100" />
           <Property Name="acct_Deleted" Type="int" />
+          <Property Name="acct_IDCard" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_EmployementLetter" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_BankAccount" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_Status" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblLoanRequest">
           <Key>
@@ -77,6 +81,10 @@
           <Property Name="phoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="deleted" Type="Int32" />
+          <Property Name="idCard" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="employmentLetter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="bankAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysDocument">
           <Key>
@@ -120,6 +128,10 @@
           <EntitySetMapping Name="tblAccounts">
             <EntityTypeMapping TypeName="LoanModel.tblAccount">
               <MappingFragment StoreEntitySet="tblAccount">
+                <ScalarProperty Name="status" ColumnName="acct_Status" />
+                <ScalarProperty Name="bankAccount" ColumnName="acct_BankAccount" />
+                <ScalarProperty Name="employmentLetter" ColumnName="acct_EmployementLetter" />
+                <ScalarProperty Name="idCard" ColumnName="acct_IDCard" />
                 <ScalarProperty Name="deleted" ColumnName="acct_Deleted" />
                 <ScalarProperty Name="email" ColumnName="acct_Email" />
                 <ScalarProperty Name="phoneNumber" ColumnName="acct_PhoneNumber" />

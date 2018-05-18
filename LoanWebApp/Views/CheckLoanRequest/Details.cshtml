@@ -3,151 +3,245 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div>
+    <form id="checkLoanRequest" name="checkLoanRequest">
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="accountID" name="accountID" value="@Model.account.id" />
+        <div class="card">
+            <div class="card-body text-dark shadow-sm">
 
-<div class="card">
-    <div class="card-body text-dark">
-        <button type="button" class="btn btn-primary"> Edit </button>
-        <button type="button" class="btn btn-success"> Save  </button>
-        <button type="button" class="btn btn-warning"> Cancel  </button>
-    </div>
+                <!-- button visibity -> used server side to hide/show, do not use java script -->
+
+                <button type="button" class="btn btn-primary" id="btnEdit" onclick="edit()"> <i class="fas fa-pencil-alt"></i> Edit </button>
+                <button type="button" class="btn btn-success" id="btnSave" onclick="save()"> Save  </button>
+                <button type="button" class="btn btn-warning" id="btnCancel" onclick="cancel()"> Cancel  </button>
+
+                <button type="button" class="btn btn-info" id="btnSubmitForApproval" onclick="submitRequest('SubmitForApproval')"> Submit For Approval  </button>
+                <button type="button" class="btn btn-success" id="btnApprove" onclick="submitRequest('Approved')"> Approve </button>
+                <button type="button" class="btn btn-danger" id="btnReject" onclick="submitRequest('Rejected')"> Reject </button>
+            </div>
+        </div>
+
+        <br />
+
+        <!-- Account Card -->
+        <div class="card">
+            <div class="card-header bg-transparent"> Account </div>
+            <!-- card body -->
+            <div class="card-body">
+
+                <!--row 1-->
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="idCard"> ID card (*): </label>
+                            <a href="@Model.account.documents[0].fullPath" target="_blank">
+                                <div> <img class="img-fluid rounded mx-auto d-block image-register" src="~/@Model.account.documents[0].path" alt="@Model.account.documents[0].name"> </div>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control required" id="idCard" name="idCard" aria-describedby="idCard" value="@Model.account.idCard" maxlength="100" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="employeeLetter"> Employment Letter (*): </label>
+                            <a href="@Model.account.documents[1].fullPath" target="_blank">
+                                <div> <img class="img-fluid rounded mx-auto d-block image-register" src="~/@Model.account.documents[1].path" alt="Chania"> </div>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control required" id="employmentLetter" name="employmentLetter" aria-describedby="email" value="@Model.account.employmentLetter" maxlength="100" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="bankAccount"> Bank Account (*): </label>
+                            <a href="@Model.account.documents[2].fullPath" target="_blank">
+                                <div> <img class="img-fluid rounded mx-auto d-block image-register" src="~/@Model.account.documents[2].path" alt="Chania"> </div>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control required" id="bankAccount" name="bankAccount" aria-describedby="email" value="@Model.account.bankAccount" maxlength="100" readonly>
+                        </div>
+                    </div>
+                </div>
+                <!--end  row 1-->
+
+                <hr />
+                <!--row 2-->
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="phoneNumber"> Phone Number: </label>
+                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="email" value="@Model.account.phoneNumber" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="email"> E-mail: </label>
+                            <input type="text" class="form-control" id="email" name="email" aria-describedby="email" value="@Model.account.email" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="email"> Status: </label>
+                            <select class="form-control required" id="amount" name="amount" disabled>
+                                <option value="@Model.account.status"> @Model.account.statusCaption </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--end  row 3-->
+            </div>
+            <!--endcard body -->
+        </div>
+        <!-- end  Account Card -->
+
+        <br />
+
+        <!-- Loan Request Card -->
+        <div class="card">
+            <div class="card-header"> Loan Request </div>
+            <!-- card body -->
+            <div class="card-body">
+                <!-- fieldset -->
+                <fieldset disabled>
+                    <!--row 1-->
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="phoneNumber"> Amount: </label>
+                                <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount" value="@Model.loanRequest.amount">
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="payDay"> Pay day: </label>
+                                <input type="text" class="form-control" id="payDay" name="payDay" aria-describedby="payDay" value="@Model.loanRequest.payDay">
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="payDate"> Pay Date: </label>
+                                <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDate" value="@Model.loanRequest.payDay">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end  row 1-->
+                    <!--row 2-->
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="interestRate"> Interest Rate: </label>
+                                <input type="text" class="form-control" id="interestRate" name="interestRate" aria-describedby="interestRate" value="@Model.loanRequest.interestRate">
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="interestAmount"> Interest Amount: </label>
+                                <input type="text" class="form-control" id="interestAmount" name="interestAmount" aria-describedby="interestAmount" value="@Model.loanRequest.interestAmount">
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="loanAmount"> Loan Amount: </label>
+                                <input type="text" class="form-control" id="loanAmount" name="loanAmount" aria-describedby="loanAmount" value="@Model.loanRequest.loanAmount">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end  row 2-->
+                </fieldset>
+                <!-- end fieldset -->
+
+            </div>
+            <!--endcard body -->
+        </div>
+        <!-- end  Account Card -->
+
+        <br />
+        <br />
+
+    </form>
 </div>
+<script>
 
-<br />
+    $(document).ready(function () {
+        $("#btnSave, #btnCancel").hide();
+    });
 
-<!-- Account Card -->
-<div class="card">
-    <div class="card-header"> Account </div>
-    <!-- card body -->
-    <div class="card-body">
-        
-            <!--row 1-->
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="idCard"> ID card: </label>
-                        <a href="@Model.account.documents[0].fullPath" target="_blank">
-                            <div> <img class="img-fluid rounded mx-auto d-block image-register" src="~/@Model.account.documents[0].path" alt="@Model.account.documents[0].name"> </div>
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="idCard" name="idCard" aria-describedby="idCard" value="@Model.account.phoneNumber" readonly>
-                    </div>
-                </div>
+    //-> cancel
+    function cancel() {
+        window.location.reload();
+    }
 
-                <div class="col">
-                    <div class="form-group">
-                        <label for="employeeLetter"> Employment Letter: </label>
-                        <a href="@Model.account.documents[1].fullPath" target="_blank">
-                            <div> <img class="img-fluid rounded mx-auto d-block image-register" src="~/@Model.account.documents[1].path" alt="Chania"> </div>
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="employementLetter" name="employementLetter" aria-describedby="email" value="@Model.account.phoneNumber">
-                    </div>
-                </div>
+    //-> edit
+    function edit() {
+        $("#btnEdit").hide();
+        $("#btnSave, #btnCancel").show();
+        $("#idCard, #employmentLetter, #bankAccount").removeAttr("readonly");
+    }
 
-                <div class="col">
-                    <div class="form-group">
-                        <label for="bankAccount"> Bank Account: </label>
-                        <a href="@Model.account.documents[2].fullPath" target="_blank">
-                            <div> <img class="img-fluid rounded mx-auto d-block image-register" src="~/@Model.account.documents[2].path" alt="Chania"> </div>
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="bankAccount" name="bankAccount" aria-describedby="email" value="@Model.account.phoneNumber">
-                    </div>
-                </div>
-            </div>
-            <!--end  row 1-->
-            
-            <hr />
-            <!--row 2-->
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="phoneNumber"> Phone Number: </label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="email" value="@Model.account.phoneNumber">
-                    </div>
-                </div>
+    //-> save
+    function save() {
+        var isOk = true;
+        $(".required").each(function (i, v) {
+            $(this).removeClass("is-invalid file-error error");
+            if ($(this).val() == "") {
+                if ($(this).attr('type') == "file")
+                    $(this).addClass("file-error")
+                else
+                    $(this).addClass("is-invalid")
 
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="email"> E-mail: </label>
-                        <input type="text" class="form-control" id="email" name="email" aria-describedby="email" value="@Model.account.email">
-                    </div>
-                </div>
-            </div>
-            <!--end  row 3-->
-    </div>
-    <!--endcard body -->
-</div>
-<!-- end  Account Card -->
+                isOk = false;
+                return;
+            }
+        });
 
-<br />
+        $.ajax({
+            url: "/CheckLoanRequest/Save",
+            data: $("#checkLoanRequest").serialize(),
+            type: "POST",
+            async: false,
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status);
+                return "error";
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+    }
+    // ------------- *** ------------//
+    function submitRequest(status) {
+        $.ajax({
+            url: "/CheckLoanRequest/SubmitRequest/"  + $("#accountID").val(),
+            type: "POST",
+            data: {
+                "status": status
+            },
+            async: false,
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status);
+                return "error";
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+    }
 
-<!-- Loan Request Card -->
-<div class="card">
-    <div class="card-header"> Loan Request </div>
-    <!-- card body -->
-    <div class="card-body">
-        <!-- fieldset -->
-        <fieldset disabled>
-            <!--row 1-->
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="phoneNumber"> Amount: </label>
-                        <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount" value="@Model.loanRequest.amount">
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="payDay"> Pay day: </label>
-                        <input type="text" class="form-control" id="payDay" name="payDay" aria-describedby="payDay" value="@Model.loanRequest.payDay">
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="payDate"> Pay Date: </label>
-                        <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDate" value="@Model.loanRequest.payDay">
-                    </div>
-                </div>
-
-            </div>
-            <!--end  row 1-->
-            <!--row 2-->
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="interestRate"> Interest Rate: </label>
-                        <input type="text" class="form-control" id="interestRate" name="interestRate" aria-describedby="interestRate" value="@Model.loanRequest.interestRate">
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="interestAmount"> Interest Amount: </label>
-                        <input type="text" class="form-control" id="interestAmount" name="interestAmount" aria-describedby="interestAmount" value="@Model.loanRequest.interestAmount">
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="loanAmount"> Loan Amount: </label>
-                        <input type="text" class="form-control" id="loanAmount" name="loanAmount" aria-describedby="loanAmount" value="@Model.loanRequest.loanAmount">
-                    </div>
-                </div>
-            </div>
-            <!--end  row 2-->
-        </fieldset>
-        <!-- end fieldset -->
-
-    </div>
-    <!--endcard body -->
-</div>
-<!-- end  Account Card -->
-
-<br />
-<br />
+</script>
