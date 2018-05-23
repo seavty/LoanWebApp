@@ -55,16 +55,16 @@
 
     <!-- js -->
     @Html.Partial("~/Views/Shared/Main/JS.cshtml")
-
-
+    
     <title> Loan Web </title>
 </head>
-<body style="background-color:#f0f0f5">
+<body style="background-color:#f7f7f9">
+    @Html.Partial("~/Views/Shared/LoadingIndicator.cshtml")
+
     @Html.Partial("~/Views/Shared/Main/Navbar.cshtml")
     <div class="container-fluid">
         <br />
         @RenderBody()
     </div>
-
 </body>
 </html>

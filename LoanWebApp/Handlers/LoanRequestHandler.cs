@@ -32,11 +32,21 @@ namespace LoanWebApp.Handlers
         //-> Create
         public async Task<LoanRequestViewDTO> Create(LoanRequestNewDTO loanRequestDTO)
         {
+            IQueryable<tblLoanRequest>loanRequestQuery = from l in db.tblLoanRequests
+                                                where l.deleted == null
+                                                select l;
+            int countLoanRequest = await loanRequestQuery.CountAsync();
+
+            if (countLoanRequest > 1)
+                throw new HttpException((int)HttpStatusCode.BadRequest, ConstantHelper.ALREADY_REQUEST_LOAN);
+
+
             loanRequestDTO = StringHelper.TrimStringProperties(loanRequestDTO);
             var loanRequest = (tblLoanRequest)MappingHelper.MapDTOToDBClass<LoanRequestNewDTO, tblLoanRequest>(loanRequestDTO, new tblLoanRequest());
             loanRequest.createdDate = DateTime.Now;
             loanRequest.payDate = DateTime.Now;
-            loanRequest.loanAmount =  Decimal.Parse((LoanAmount(loanRequestDTO)).ToString());
+            //loanRequest.loanAmount =  Decimal.Parse((LoanRequestCalculation(loanRequestDTO)).ToString());
+            loanRequest = LoanRequestCalculation(loanRequestDTO, loanRequest);
             db.tblLoanRequests.Add(loanRequest);
             await db.SaveChangesAsync();
             db.Entry(loanRequest).Reload();
@@ -44,25 +54,29 @@ namespace LoanWebApp.Handlers
         }
 
         //private function 
-        private Double LoanAmount(LoanRequestNewDTO loanRequest)
+        private tblLoanRequest LoanRequestCalculation(LoanRequestNewDTO loanRequestDTO, tblLoanRequest loanRequest)
         {
-            var interest = 0;
-            switch (loanRequest.payDay)
+            var interestRate = 0;
+            switch (loanRequestDTO.payDay)
             {
                 case 10:
-                    interest = 10;
+                    interestRate = 10;
                     break;
                 case 15:
-                    interest = 15;
+                    interestRate = 15;
                     break;
                 case 30:
-                    interest = 30;
+                    interestRate = 30;
                     break;
                 default:
-                    interest = 0;
+                    interestRate = 0;
                     break;
             }
-            return loanRequest.amount + (loanRequest.amount * interest / 100);
+            loanRequest.interestRate = interestRate;
+            loanRequest.interestAmount = Decimal.Parse((loanRequestDTO.amount * interestRate / 100).ToString());
+            loanRequest.loanAmount = Decimal.Parse(( Decimal.Parse(loanRequestDTO.amount.ToString()) + loanRequest.interestAmount).ToString());
+
+            return loanRequest;
         }
     }
 }

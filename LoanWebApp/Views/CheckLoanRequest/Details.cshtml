@@ -3,30 +3,30 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
+<div class="summary">
     <form id="checkLoanRequest" name="checkLoanRequest">
         @Html.AntiForgeryToken()
         <input type="hidden" id="accountID" name="accountID" value="@Model.account.id" />
-        <div class="card">
+        <div class="card border-info">
             <div class="card-body text-dark shadow-sm">
 
                 <!-- button visibity -> used server side to hide/show, do not use java script -->
 
                 <button type="button" class="btn btn-primary" id="btnEdit" onclick="edit()"> <i class="fas fa-pencil-alt"></i> Edit </button>
-                <button type="button" class="btn btn-success" id="btnSave" onclick="save()"> Save  </button>
-                <button type="button" class="btn btn-warning" id="btnCancel" onclick="cancel()"> Cancel  </button>
+                <button type="button" class="btn btn-success" id="btnSave" onclick="save()"> <i class="fas fa-save"></i>  Save  </button>
+                <button type="button" class="btn btn-danger" id="btnCancel" onclick="cancel()"> <i class="fas fa-times"></i> Cancel  </button>
 
-                <button type="button" class="btn btn-info" id="btnSubmitForApproval" onclick="submitRequest('SubmitForApproval')"> Submit For Approval  </button>
-                <button type="button" class="btn btn-success" id="btnApprove" onclick="submitRequest('Approved')"> Approve </button>
-                <button type="button" class="btn btn-danger" id="btnReject" onclick="submitRequest('Rejected')"> Reject </button>
+                <button type="button" class="btn btn-info" id="btnSubmitForApproval" onclick="submitRequest('SubmitForApproval')"> <i class="fas fa-upload"></i> Submit For Approval  </button>
+                <button type="button" class="btn btn-success" id="btnApprove" onclick="submitRequest('Approved')"> <i class="fas fa-check"></i> Approve </button>
+                <button type="button" class="btn btn-danger" id="btnReject" onclick="submitRequest('Rejected')"> <i class="fas fa-times"></i> Reject </button>
             </div>
         </div>
 
         <br />
 
         <!-- Account Card -->
-        <div class="card">
-            <div class="card-header bg-transparent"> Account </div>
+        <div class="card shadow-sm">
+            <div class="card-header"> Account </div>
             <!-- card body -->
             <div class="card-body">
 
@@ -90,7 +90,7 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label for="email"> Status: </label>
-                            <select class="form-control required" id="amount" name="amount" disabled>
+                            <select class="form-control" id="status" name="status" disabled>
                                 <option value="@Model.account.status"> @Model.account.statusCaption </option>
                             </select>
                         </div>
@@ -105,7 +105,7 @@
         <br />
 
         <!-- Loan Request Card -->
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-header"> Loan Request </div>
             <!-- card body -->
             <div class="card-body">
@@ -176,7 +176,22 @@
 <script>
 
     $(document).ready(function () {
-        $("#btnSave, #btnCancel").hide();
+        $("#btnEdit, #btnSave, #btnCancel").hide();
+        $("#btnSubmitForApproval, #btnApprove, #btnReject").hide();
+
+        if (($("#status").val() == "Pending")) {
+            $("#btnEdit").show();
+            if ($("#idCard").val() != "") {
+                $("#btnEdit").hide();
+                $("#btnSubmitForApproval").show();
+            }
+        }
+        else {
+            if (($("#status").val() == "SubmitForApproval")) {
+                $("#btnSubmitForApproval").hide();
+                $("#btnApprove, #btnReject").show();
+            }
+        }
     });
 
     //-> cancel
@@ -193,54 +208,16 @@
 
     //-> save
     function save() {
-        var isOk = true;
-        $(".required").each(function (i, v) {
-            $(this).removeClass("is-invalid file-error error");
-            if ($(this).val() == "") {
-                if ($(this).attr('type') == "file")
-                    $(this).addClass("file-error")
-                else
-                    $(this).addClass("is-invalid")
-
-                isOk = false;
-                return;
-            }
-        });
-
-        $.ajax({
-            url: "/CheckLoanRequest/Save",
-            data: $("#checkLoanRequest").serialize(),
-            type: "POST",
-            async: false,
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status);
-                return "error";
-            },
-            beforeSend: function () {
-            },
-            success: function (data) {
+        if (isValid()) {
+            ajaxHelper("../Save", $("#checkLoanRequest").serialize(), requestMethod.POST).then(function (done) {
                 window.location.reload();
-            }
-        });
+            });
+        }
     }
     // ------------- *** ------------//
     function submitRequest(status) {
-        $.ajax({
-            url: "/CheckLoanRequest/SubmitRequest/"  + $("#accountID").val(),
-            type: "POST",
-            data: {
-                "status": status
-            },
-            async: false,
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status);
-                return "error";
-            },
-            beforeSend: function () {
-            },
-            success: function (data) {
-                window.location.reload();
-            }
+        ajaxHelper("../SubmitRequest/" + $("#accountID").val(), { "status": status }, requestMethod.POST).then(function (done) {
+            window.location.reload();
         });
     }
 

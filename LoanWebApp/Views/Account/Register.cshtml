@@ -3,51 +3,54 @@
     /**/
 
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Basic/_Basic.cshtml";
 }
 
-<form name="register" id="register" enctype="multipart/form-data">
-    @Html.AntiForgeryToken()
-    <div class="card">
-        <div class="card-header"> Register </div>
+<div class="container">
+    <form name="register" id="register" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div class="card shadow-sm">
+            <div class="card-header"> Register </div>
 
-        <div class="card-body">
-            <label class="text-danger"> Note: Fields mark (*) are required.  </label>
-            <hr />
+            <div class="card-body">
+                <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+                <hr />
 
-            <div class="form-group">
-                <label for="IDCard"> ID Card (*): </label>
-                <input type="file" class="form-control-file required files" name="idCard" id="idCard" accept=".png, .jpg, .jpeg">
+                <div class="form-group">
+                    <label for="IDCard"> ID Card (*): </label>
+                    <input type="file" class="form-control-file required files" name="idCard" id="idCard" accept=".png, .jpg, .jpeg">
+                </div>
+
+                <div class="form-group">
+                    <label for="EmploymentLetter"> Employment Letter (*): </label>
+                    <input type="file" class="form-control-file required files" id="employmentLetter" name="employmentLetter" accept=".png, .jpg, .jpeg">
+                </div>
+
+                <div class="form-group">
+                    <label for="Bank Account"> Bank Account (*): </label>
+                    <input type="file" class="form-control-file required files" id="bankAccount" name="bankAccount" accept=".png, .jpg, .jpeg">
+                </div>
+                <hr />
+
+                <div class="form-group">
+                    <label for="Phone Number"> Phone Number (*): </label>
+                    <input type="text" class="form-control required" name="phoneNumber" id="phoneNumber" aria-describedby="txtPhoneNumber" placeholder="Enter phone number">
+                </div>
+
+                <div class="form-group">
+                    <label for="E-mail"> E-mail (*): </label>
+                    <input type="text" class="form-control required required" name="email" id="email" aria-describedby="txtEmail" placeholder="Enter e-mail">
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="EmploymentLetter"> Employment Letter (*): </label>
-                <input type="file" class="form-control-file required files" id="employmentLetter" name="employmentLetter" accept=".png, .jpg, .jpeg">
+            <div class="card-footer text-muted">
+                <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
             </div>
-
-            <div class="form-group">
-                <label for="Bank Account"> Bank Account (*): </label>
-                <input type="file" class="form-control-file required files" id="bankAccount" name="bankAccount" accept=".png, .jpg, .jpeg">
-            </div>
-            <hr />
-
-            <div class="form-group">
-                <label for="Phone Number"> Phone Number (*): </label>
-                <input type="text" class="form-control required" name="phoneNumber" id="phoneNumber" aria-describedby="txtPhoneNumber" placeholder="Enter phone number">
-            </div>
-
-            <div class="form-group">
-                <label for="E-mail"> E-mail (*): </label>
-                <input type="text" class="form-control required required" name="email" id="email" aria-describedby="txtEmail" placeholder="Enter e-mail">
-            </div>
-
         </div>
+    </form>
 
-        <div class="card-footer text-muted">
-            <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
-        </div>
-    </div>
-</form>
+</div>
 
 <script src="~/Content/js/jquery-upload.js"></script>
 <script>
@@ -74,7 +77,7 @@
                 //window.location.href = "/loanRequest"
                 //if (data.substring(0, 2) == "ok")
                 if (data.substring(0, 2) == "ok")
-                    window.location.href = "/loanRequest/index" + data.replace("ok", "");
+                    window.location.href = "/loanRequest/index/" + data.replace("ok", "");
                 else
                     alert("Error occur while processing your request...!");
 

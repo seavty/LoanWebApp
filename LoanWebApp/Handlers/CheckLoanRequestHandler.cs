@@ -30,8 +30,10 @@ namespace LoanWebApp.Handlers
             checkLoanRequest.account = await accountHandler.SelectByID(id);
 
             var loanRequest = await db.tblLoanRequests.FirstOrDefaultAsync(l => l.deleted == null && l.accountID == id);
+
             if (loanRequest == null)
-                throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
+                loanRequest = new tblLoanRequest();
+
             checkLoanRequest.loanRequest = DoubleHelper.TwoPrecision(MappingHelper.MapDBClassToDTO<tblLoanRequest, LoanRequestViewDTO>(loanRequest));
             return DoubleHelper.TwoPrecision(checkLoanRequest);
         }

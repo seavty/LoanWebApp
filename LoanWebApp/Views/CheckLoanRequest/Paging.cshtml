@@ -13,7 +13,7 @@
         @{ int i = 0;}
         @foreach (var item in Model.items)
         {
-            
+
             <tr>
                 <th scope="row"> @(Model.metaData.startRow + i) </th>
                 <td> @item.account.phoneNumber </td>
@@ -24,6 +24,6 @@
 
         }
 
-@Html.Partial("~/Views/Pagination.cshtml", Model.metaData)
+        @Html.Partial("~/Views/Pagination.cshtml", Model.metaData)
 
 

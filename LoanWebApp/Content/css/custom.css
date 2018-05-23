@@ -1,6 +1,9 @@
-﻿body {
+﻿
+body {
+    
     font-family: 'Hind', sans-serif;
     font-size: 1em;
+        
 }
 
 
@@ -88,4 +91,44 @@
 
 div.polaroid {
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+/** form */
+
+.summary .form-control {
+    font-weight: 700;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+label {
+    margin-bottom: 0px;
+    font-weight: 500
+}
+
+/** end form **/
+
+.c-hr {
+    background-color: white;
+    border-top: 1px dashed #8c8b8b;
+}
+
+.c-header {
+    background-color: #e9ecef;
+    padding: 30px;
+}
+
+.c-footer {
+    background-color: #272727;
+    color: white;
+    padding: 10px;
+}
+
+.img-logo {
+    width: 300px;
+    height: 200px;
+    align-content:center;
 }

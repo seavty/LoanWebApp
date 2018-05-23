@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- css -->
+    @Html.Partial("~/Views/Shared/Main/Css.cshtml")
+
+    <!-- js -->
+    @Html.Partial("~/Views/Shared/Main/JS.cshtml")
+
+    <title> Loan Web </title>
+</head>
+
+<body style="background-color:#f7f7f9">
+
+    @Html.Partial("~/Views/Shared/LoadingIndicator.cshtml")
+
+
+    @Html.Partial("~/Views/Shared/Basic/Header.cshtml")
+
+    <br />
+
+    @RenderBody()
+
+    <br />
+    @Html.Partial("~/Views/Shared/Basic/Footer.cshtml")
+
+
+</body>
+
+</html>

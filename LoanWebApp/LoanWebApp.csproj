@@ -153,6 +153,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Content\css\preloader.css" />
+    <Content Include="Content\js\helper\ajaxHelper.js" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckLoanRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,8 +221,13 @@
     <Content Include="Content\css\gijgo.min.css" />
     <Content Include="Content\css\Hind.css" />
     <Content Include="Content\css\Merienda.css" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\gijgo.min.js" />
+    <Content Include="Content\js\helper\numericHelper.js" />
+    <Content Include="Content\js\helper\validationHelper.js" />
+    <Content Include="Content\js\jquery.preloader.min.js" />
+    <Content Include="Content\js\waitingfor.js" />
     <Content Include="Content\js\jquery-3.2.1.js" />
     <Content Include="Content\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Content\js\jquery-upload.js" />
@@ -268,6 +275,7 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\css\preloader.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -309,6 +317,10 @@
     <Content Include="Views\Shared\Main\Navbar.cshtml" />
     <Content Include="Views\Shared\Main\Css.cshtml" />
     <Content Include="Views\Shared\Main\JS.cshtml" />
+    <Content Include="Views\Shared\Basic\_Basic.cshtml" />
+    <Content Include="Views\Shared\Basic\Header.cshtml" />
+    <Content Include="Views\Shared\Basic\Footer.cshtml" />
+    <Content Include="Views\Shared\LoadingIndicator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
