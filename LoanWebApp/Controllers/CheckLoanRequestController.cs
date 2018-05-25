@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace LoanWebApp.Controllers
 {
+    
     public class CheckLoanRequestController : Controller
     {
         private CheckLoanRequestHandler handler = null;
@@ -39,6 +40,7 @@ namespace LoanWebApp.Controllers
         }
 
         //-> Save
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<ActionResult> Save(CheckLoanRequestEditDTO checkLoanRequest)
         {
@@ -55,21 +57,22 @@ namespace LoanWebApp.Controllers
             catch (Exception ex)
             {
                 Response.StatusCode = 500;
-                //error should wirte to log file
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
 
-        //-> SubmitForApproval
+
+        //-> SubmitRequest
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<ActionResult> SubmitRequest(int id)
+        public async Task<ActionResult> SubmitRequest(LoanRequestSubmitStatusDTO loanRequest)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     Response.StatusCode = 200;
-                    return Json(await handler.SubmitForApproval(id, Request.Form["status"].ToString()), JsonRequestBehavior.AllowGet);
+                    return Json(await handler.SubmitRequest(loanRequest), JsonRequestBehavior.AllowGet);
                 }
                 Response.StatusCode = 400;
                 return null;
@@ -77,7 +80,6 @@ namespace LoanWebApp.Controllers
             catch (Exception ex)
             {
                 Response.StatusCode = 500;
-                //error should wirte to log file
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }

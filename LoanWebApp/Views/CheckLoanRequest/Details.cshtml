@@ -1,4 +1,7 @@
-﻿@model LoanWebApp.Models.DTO.CheckLoanRequest.CheckLoanRequestViewDTO
+﻿@using LoanWebApp.Extension
+@model LoanWebApp.Models.DTO.CheckLoanRequest.CheckLoanRequestViewDTO
+
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,9 +19,9 @@
                 <button type="button" class="btn btn-success" id="btnSave" onclick="save()"> <i class="fas fa-save"></i>  Save  </button>
                 <button type="button" class="btn btn-danger" id="btnCancel" onclick="cancel()"> <i class="fas fa-times"></i> Cancel  </button>
 
-                <button type="button" class="btn btn-info" id="btnSubmitForApproval" onclick="submitRequest('SubmitForApproval')"> <i class="fas fa-upload"></i> Submit For Approval  </button>
-                <button type="button" class="btn btn-success" id="btnApprove" onclick="submitRequest('Approved')"> <i class="fas fa-check"></i> Approve </button>
-                <button type="button" class="btn btn-danger" id="btnReject" onclick="submitRequest('Rejected')"> <i class="fas fa-times"></i> Reject </button>
+                <button type="button" class="btn btn-info" id="btnSubmitForApproval"> <i class="fas fa-upload"></i> Submit For Approval  </button>
+                <button type="button" class="btn btn-success" id="btnApprove"> <i class="fas fa-check"></i> Approve </button>
+                <button type="button" class="btn btn-danger" id="btnReject"> <i class="fas fa-times"></i> Reject </button>
             </div>
         </div>
 
@@ -96,7 +99,20 @@
                         </div>
                     </div>
                 </div>
-                <!--end  row 3-->
+                <!--end  row 2-->
+                <!-- row 3 -->
+                @if (Model.account.status == "Rejected")
+                {
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for=""> Reason Reject: </label>
+                                <textarea id="reasonReject" name="reasonReject" class="form-control" readonly> @Model.account.reasonReject </textarea>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- end row 3-->
             </div>
             <!--endcard body -->
         </div>
@@ -116,7 +132,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="phoneNumber"> Amount: </label>
-                                <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount" value="@Model.loanRequest.amount">
+                                <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount" value="@Model.loanRequest.amount.ToTwoDecimalPoint()">
                             </div>
                         </div>
 
@@ -130,7 +146,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="payDate"> Pay Date: </label>
-                                <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDate" value="@Model.loanRequest.payDay">
+                                <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDate" value="">
                             </div>
                         </div>
 
@@ -141,21 +157,21 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="interestRate"> Interest Rate: </label>
-                                <input type="text" class="form-control" id="interestRate" name="interestRate" aria-describedby="interestRate" value="@Model.loanRequest.interestRate">
+                                <input type="text" class="form-control" id="interestRate" name="interestRate" aria-describedby="interestRate" value="@Model.loanRequest.interestRate.ToTwoDecimalPoint()">
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="interestAmount"> Interest Amount: </label>
-                                <input type="text" class="form-control" id="interestAmount" name="interestAmount" aria-describedby="interestAmount" value="@Model.loanRequest.interestAmount">
+                                <input type="text" class="form-control" id="interestAmount" name="interestAmount" aria-describedby="interestAmount" value="@Model.loanRequest.interestAmount.ToTwoDecimalPoint()">
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="loanAmount"> Loan Amount: </label>
-                                <input type="text" class="form-control" id="loanAmount" name="loanAmount" aria-describedby="loanAmount" value="@Model.loanRequest.loanAmount">
+                                <input type="text" class="form-control" id="loanAmount" name="loanAmount" aria-describedby="loanAmount" value="@Model.loanRequest.loanAmount.ToTwoDecimalPoint()">
                             </div>
                         </div>
                     </div>
@@ -168,14 +184,48 @@
         </div>
         <!-- end  Account Card -->
 
+        <div class="modal fade" id="reasonRejectModal" tabindex="-1" role="dialog" aria-labelledby="reasonRejectModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reasonRejectModalTitle"> Reason Reject </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <textarea id="reasonReject" name="reasonReject" class="form-control" value="" placeholder="Reason reject"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnReasonRejectSubmit"> <i class="fas fa-upload"></i> Sumbit </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <br />
         <br />
 
     </form>
 </div>
+
 <script>
 
     $(document).ready(function () {
+        initializeComponents();
+    });
+
+    //-> initializeComponents
+    function initializeComponents() {
+        setupView();
+        setupEvent();
+    }
+
+    //-> setupView
+    function setupView() {
         $("#btnEdit, #btnSave, #btnCancel").hide();
         $("#btnSubmitForApproval, #btnApprove, #btnReject").hide();
 
@@ -192,7 +242,34 @@
                 $("#btnApprove, #btnReject").show();
             }
         }
-    });
+    }
+
+    //-> setupEvent
+    function setupEvent() {
+        $("#btnReject").click(function () {
+            if (confirm("Do you want to reject this loan request?"))
+                $("#reasonRejectModal").modal("show");
+        });
+
+        $("#btnSubmitForApproval").click(function () {
+            if (confirm("Do you want to submit this loan request for approval?"))
+                submitRequest('SubmitForApproval');
+        });
+
+        $("#btnApprove").click(function () {
+            if (confirm("Do you want to approve this loan request?"))
+                submitRequest('Approved');
+        });
+
+        //-- reason reject
+        $("#btnReasonRejectSubmit").click(function () {
+            if ($("#reasonReject").val() == "") {
+                $("#reasonReject").addClass("is-invalid");
+                return;
+            }
+            submitRequest('Rejected');
+        });
+    }
 
     //-> cancel
     function cancel() {
@@ -216,7 +293,8 @@
     }
     // ------------- *** ------------//
     function submitRequest(status) {
-        ajaxHelper("../SubmitRequest/" + $("#accountID").val(), { "status": status }, requestMethod.POST).then(function (done) {
+        var data = $("#checkLoanRequest").serialize() + "&status=" + status;
+        ajaxHelper("../SubmitRequest/", data, requestMethod.POST).then(function (done) {
             window.location.reload();
         });
     }

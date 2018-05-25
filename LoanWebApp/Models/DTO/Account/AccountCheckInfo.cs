@@ -6,13 +6,10 @@ using System.Web;
 
 namespace LoanWebApp.Models.DTO.Account
 {
-    public class AccountNewDTO: AccountBaseDTO
+    public class AccountCheckInfo
     {
-
         [Required]
-        public double amount { get; set; }
-
-        [Required]
-        public int payDay { get; set; }
+        [MaxLength(100)]    
+        public string phoneNumber { get; set; }
     }
 }

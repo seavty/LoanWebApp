@@ -36,6 +36,19 @@
                     </div>
                 </div>
 
+                <div class="col">
+                    <div class="form-group">
+                        <label for="status"> Status: </label>
+                        <select class="form-control required" id="status" name="status">
+                            <option value=""> -- Please Select Status -- </option>
+                            <option value="Pending"> Pending </option>
+                            <option value="SubmitForApproval"> Submit For Approval </option>
+                            <option value="Approved"> Approved </option>
+                            <option value="Rejected"> Rejected </option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -43,6 +56,8 @@
     <br />
     
     <div id="tblCheckLoanRequest" class="shadow-sm bg-white"></div>
+
+    <br />
     
 
 </form>

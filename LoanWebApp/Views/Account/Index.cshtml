@@ -1,73 +1,50 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Basic/_Basic.cshtml";
 }
 
-@*
-    <form id="login" name="login">
-        @Html.AntiForgeryToken()
-        <div class="card">
-            <div class="card-header"> Login </div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
+<div class="container">
+    <div id="dvCheckInfo">
+        <form id="checkInfo" name="checkInfo">
+            @Html.AntiForgeryToken()
+            <div class="card">
+                <div class="card-header"> Phone Number </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            </div>
+                <div class="card-body">
+                    <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+                    <hr />
+                    <div class="form-group">
+                        <label for="phoneNumber"> Phone Number (*): </label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control required" value="" placeholder="Please enter your phone number" />
+                    </div>
 
-            <button type="button" class="btn btn-primary"> Login </button>
-        </div>
-        <div class="card-footer text-muted">
-            <button type="button" class="btn btn-primary" id="btnSumbit"> Forgot password </button>
-        </div>
-    </form>
-*@
-
-
-<!-- div class="row justify-content-sm-center" -->
-<div class="row justify-content-sm-center">
-    <!-- div class="col-sm-6" -->
-    <div class="col-sm-6">
-        <!-- div class="card" -->
-        <div class="card border-secondary">
-            <div class="card-header">Login </div>
-
-            <!-- div class="card-body" -->
-            <div class="card-body" style="padding: 30px;">
-                <div class="input-group" style="margin-bottom: 10px">
-                    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="User Name" id="txtUser" aria-describedby="basic-addon1" />
+                    
                 </div>
 
-                <div class="input-group" style="margin-bottom: 10px">
-                    <span class="input-group-addon" id="Span1"><i class="fa fa-key" aria-hidden="true"></i></span>
-                    <input type="password" class="form-control" id="txtPassword" placeholder="Password" aria-describedby="basic-addon1" />
+                <div class="card-footer text-muted">
+                    <button type="button" class="btn btn-primary" id="btnSubmit"> <i class="fas fa-upload"></i> Submit </button>
                 </div>
-
-                <div class="input-group" style="margin-left: 3px">
-                    <button type="button" class="btn btn-success btn-sm" id="btLogin"> <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;Log in </button>
-                    &nbsp;
-                    <button type="button" class="btn btn-danger btn-sm" id="btClear"> <i class="fa fa-eraser" aria-hidden="true"></i> &nbsp;Clear </button>
-                </div>
-
-                <h4 class="fg-red align-center" id="dvInfo" runat="server"></h4>
             </div>
-            <!-- end  div class="card-body" -->
-            <!-- div class="card-footer" -->
-            <div class="card-footer">
-                <a href=""> Forgot password? </a>
-            </div>
-            <!-- end  div class="card-footer" -->
-
-        </div>
-        <!--end div class="card" -->
+        </form>
     </div>
-    <!--end  div class="col-sm-6" -->
 </div>
-<!--end  div class="row justify-content-sm-center" -->
+
+<div style="height:180px"></div>
+
+<script>
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            if (isValid()) {
+                ajaxHelper("CheckInfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
+                    if (done == "")
+                        window.location.href = "../Account/Register";
+                });
+            }
+        });
+    });
+</script>
+
+
+
+
+

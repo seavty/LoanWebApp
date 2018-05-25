@@ -13,6 +13,7 @@ namespace LoanWebApp.Models.DTO.Account
         public string bankAccount { get; set; }
         public string status { get; set; }
         public string statusCaption { get; set; }
+        public string reasonReject { get; set; }
 
         public List<DocumentViewDTO> documents { get; set; }
     }

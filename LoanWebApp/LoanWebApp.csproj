@@ -153,12 +153,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Content\css\jquery.toast.css" />
     <Content Include="Content\css\preloader.css" />
     <Content Include="Content\js\helper\ajaxHelper.js" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckLoanRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanRequestController.cs" />
+    <Compile Include="Extension\DoubleExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,12 +199,14 @@
       <DependentUpon>LoanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\Account\AccountBaseDTO.cs" />
+    <Compile Include="Models\DTO\Account\AccountCheckInfo.cs" />
     <Compile Include="Models\DTO\Account\AccountEditDTO.cs" />
     <Compile Include="Models\DTO\Account\AccountNewDTO.cs" />
     <Compile Include="Models\DTO\Account\AccountViewDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestBase.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestEditDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestViewDTO.cs" />
+    <Compile Include="Models\DTO\CheckLoanRequest\LoanRequestSubmitStatusDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentBaseDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentViewDTO.cs" />
     <Compile Include="Models\DTO\GetListDTO.cs" />
@@ -227,6 +231,7 @@
     <Content Include="Content\js\helper\numericHelper.js" />
     <Content Include="Content\js\helper\validationHelper.js" />
     <Content Include="Content\js\jquery.preloader.min.js" />
+    <Content Include="Content\js\jquery.toast.js" />
     <Content Include="Content\js\waitingfor.js" />
     <Content Include="Content\js\jquery-3.2.1.js" />
     <Content Include="Content\js\jquery-3.3.1.slim.min.js" />

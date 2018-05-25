@@ -1,11 +1,15 @@
 ﻿@model LoanWebApp.Models.DTO.GetListDTO<LoanWebApp.Models.DTO.CheckLoanRequest.CheckLoanRequestViewDTO>
+@using LoanWebApp.Extension
 
 <table class="table table-bordered table-striped table-hover">
     <thead>
-        <tr>
+        <tr class="text-center">
             <th scope="col" width="65px">#</th>
             <th scope="col"> Phone Number </th>
             <th scope="col"> E-mail </th>
+            <th scope="col" width="120px"> Amount  </th>
+            <th scope="col" width="120px"> Pay Day  </th>
+            <th scope="col" width="120px"> Status  </th>
             <th scope="col"> Action </th>
         </tr>
     </thead>
@@ -14,12 +18,15 @@
         @foreach (var item in Model.items)
         {
 
-            <tr>
-                <th scope="row"> @(Model.metaData.startRow + i) </th>
-                <td> @item.account.phoneNumber </td>
-                <td> @item.account.email  </td>
-                <td> <a href="Details/@item.account.id"> Detail </a> </td>
-            </tr>
+        <tr>
+            <th scope="row" class="text-center"> @(Model.metaData.startRow + i) </th>
+            <td> @item.account.phoneNumber </td>
+            <td> @item.account.email  </td>
+            <td class="text-right"> @item.loanRequest.amount.ToTwoDecimalPoint() </td>
+            <td class="text-right"> @item.loanRequest.payDay </td>
+            <td> @item.account.statusCaption </td>
+            <td> <a href="Details/@item.account.id"> Detail </a> </td>
+        </tr>
             i++;
 
         }

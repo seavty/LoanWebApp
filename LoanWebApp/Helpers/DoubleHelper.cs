@@ -1,12 +1,16 @@
-﻿using System;
+﻿using LoanWebApp.Extension;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
+
 
 namespace LoanWebApp.Helpers
 {
     public static class DoubleHelper
     {
+        
         public static TSelf TwoPrecision<TSelf>(this TSelf input)
         {
             if (input == null)
@@ -19,6 +23,7 @@ namespace LoanWebApp.Helpers
             {
                 double currentValue = (double)doubleProperty.GetValue(input, null);
                 doubleProperty.SetValue(input, Math.Truncate(100 * currentValue) / 100, null);
+                
             }
             return input;
         }

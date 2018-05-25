@@ -6,11 +6,12 @@
     Layout = "~/Views/Shared/Basic/_Basic.cshtml";
 }
 
-<div class="container">
+<div class="container" id="dvLoanRequest">
     <form name="register" id="register" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
+        <!-- upload document-->
         <div class="card shadow-sm">
-            <div class="card-header"> Register </div>
+            <div class="card-header"> Personal Info </div>
 
             <div class="card-body">
                 <label class="text-danger"> Note: Fields mark (*) are required.  </label>
@@ -44,16 +45,146 @@
 
             </div>
 
-            <div class="card-footer text-muted">
+
+        </div>
+        <!-- end upload document -->
+
+        <br />
+
+        <!-- loan request -->
+        <div class="card">
+            <div class="card-header"> Loan Request </div>
+
+            <div class="card-body">
+                <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+                <hr />
+                <div class="form-group">
+                    <label for="amount"> Amount (*): </label>
+                    <select class="form-control required" id="amount" name="amount">
+                        <option value=""> -- Please Select Amount -- </option>
+                        <option value="10"> 10 $ </option>
+                        <option value="20"> 20 $ </option>
+                        <option value="50"> 50 $ </option>
+                        <option value="100"> 100 $ </option>
+                        <option value="200"> 200 $ </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="payDay"> Pay day (*): </label>
+                    <select class="form-control required" id="payDay" name="payDay">
+                        <option value=""> -- Please Select Pay Day -- </option>
+                        <option value="10"> 10 days </option>
+                        <option value="15"> 20 days </option>
+                        <option value="30"> 30 days </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="payDay"> Pay Date (*): </label>
+                    <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDay" placeholder="Enter pay date">
+                </div>
+
+                <hr />
+                <div class="form-group">
+                    <label for="payDay"> Interest Rate: </label>
+                    <input class="form-control" type="text" id="interestRate" name="interestRate" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="payDay"> Interest Amount: </label>
+                    <input class="form-control" type="text" id="interestAmount" name="interestAmount" readonly>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="payDay"> Total Amount: </label>
+                    <input class="form-control" type="text" id="loanAmount" name="loanAmount" readonly>
+                </div>
+            </div>
+        </div>
+        <!-- end loan request -->
+
+        <br />
+
+        <div class="card border-info">
+            <div class="card-body text-dark shadow-sm">
                 <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
             </div>
         </div>
     </form>
+</div>
 
+
+<div id="dvMsg" style="display:none">
+    <div class="card border-info text-center">
+        <div class="card-body text-dark shadow-sm">
+            <h2 class="text-success"> Your request has been successfully submitted to server! </h2>
+            <br />
+            <h3>We will contact you very soon.</h3>
+        </div>
+    </div>
 </div>
 
 <script src="~/Content/js/jquery-upload.js"></script>
 <script>
+    $(document).ready(function () {
+        loanAmount();
+
+        $("#amount, #payDay").change(function () {
+            loanAmount();
+        });
+
+
+        $("#btnSumbit").click(function () {
+            handleSubmit();
+        });
+
+    });
+
+    //-> handleSubmit
+    function handleSubmit() {
+        if (isValid()) {
+            $(".files").upload('/account/Register?' + $("#register").serialize(), function (data) {
+                if (data.substring(0, 2) == "ok")
+                    $("#dvLoanRequest").html($("#dvMsg").html());
+                else
+                    alert("Error occur while processing your request...!");
+            });
+        }
+    }
+
+    //-> loanAmount
+    function loanAmount() {
+        var amount = toFloat($("#amount").val());
+        var payDay = toInt($("#payDay").val());
+        var interestRate = 0;
+        var interestAmount = 0;
+        var total = 0;
+        switch (payDay) {
+            case 10:
+                interestRate = 10;
+                break;
+            case 15:
+                interestRate = 15;
+                break;
+            case 30:
+                interestRate = 30;
+                break;
+            default:
+                interestRate = 0;
+        }
+        interestRate = toFloat(interestRate);
+        interestAmount = amount * interestRate / 100;
+
+        //-- remember toFixed return string not number;
+        total = parseFloat(amount) + parseFloat(interestAmount);
+        $("#interestRate").val(toFloat(interestRate) + " %");
+        $("#interestAmount").val(toFloatWithDollarCurrency(interestAmount));
+        $("#loanAmount").val(toFloatWithDollarCurrency(total));
+    }
+
+    /*
     $("#btnSumbit").click(function () {
         var isOk = true;
         $(".required").each(function (i, v) {
@@ -84,5 +215,6 @@
             });
         }
     });
+    */
 </script>
 

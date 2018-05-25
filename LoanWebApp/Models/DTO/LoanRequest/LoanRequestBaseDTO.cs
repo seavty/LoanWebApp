@@ -10,7 +10,6 @@ namespace LoanWebApp.Models.DTO.LoanRequest
     {
         public int? id { get; set; }
 
-        
         [Required]
         public double amount { get; set; }
 
@@ -20,11 +19,5 @@ namespace LoanWebApp.Models.DTO.LoanRequest
         [Required]
         public int accountID { get; set; }
 
-        /*
-        public DateTime payDate { get; set; }
-        */
-        /*
-        public double loanAmount { get; set; }
-        */
     }
 }
