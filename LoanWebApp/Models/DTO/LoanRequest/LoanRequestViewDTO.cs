@@ -10,5 +10,7 @@ namespace LoanWebApp.Models.DTO.LoanRequest
         public double loanAmount { get; set; }
         public double interestRate { get; set; }
         public double interestAmount { get; set; }
+
+        public DateTime payDate { get; set; }
     }
 }

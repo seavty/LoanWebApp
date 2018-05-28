@@ -155,11 +155,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\css\jquery.toast.css" />
     <Content Include="Content\css\preloader.css" />
+    <Content Include="Content\js\function\loanCalculation.js" />
     <Content Include="Content\js\helper\ajaxHelper.js" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckLoanRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanRequestController.cs" />
+    <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="Extension\DoubleExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -326,6 +328,7 @@
     <Content Include="Views\Shared\Basic\Header.cshtml" />
     <Content Include="Views\Shared\Basic\Footer.cshtml" />
     <Content Include="Views\Shared\LoadingIndicator.cshtml" />
+    <Content Include="Views\Account\RequestLoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,56 +1,15 @@
 ﻿
+
 @{
     /**/
 
-    ViewBag.Title = "Register";
+    ViewBag.Title = "RequestLoan";
     Layout = "~/Views/Shared/Basic/_Basic.cshtml";
 }
 
 <div class="container" id="dvLoanRequest">
-    <form name="register" id="register" enctype="multipart/form-data">
+    <form name="requestLoan" id="requestLoan" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
-        <!-- upload document-->
-        <div class="card shadow-sm">
-            <div class="card-header"> Personal Info </div>
-
-            <div class="card-body">
-                <label class="text-danger"> Note: Fields mark (*) are required.  </label>
-                <hr />
-
-                <div class="form-group">
-                    <label for="IDCard"> ID Card (*): </label>
-                    <input type="file" class="form-control-file required files" name="idCard" id="idCard" accept=".png, .jpg, .jpeg">
-                </div>
-
-                <div class="form-group">
-                    <label for="EmploymentLetter"> Employment Letter (*): </label>
-                    <input type="file" class="form-control-file required files" id="employmentLetter" name="employmentLetter" accept=".png, .jpg, .jpeg">
-                </div>
-
-                <div class="form-group">
-                    <label for="Bank Account"> Bank Account (*): </label>
-                    <input type="file" class="form-control-file required files" id="bankAccount" name="bankAccount" accept=".png, .jpg, .jpeg">
-                </div>
-                <hr />
-
-                <div class="form-group">
-                    <label for="Phone Number"> Phone Number (*): </label>
-                    <input type="text" class="form-control required" name="phoneNumber" id="phoneNumber" aria-describedby="txtPhoneNumber" placeholder="Enter phone number">
-                </div>
-
-                <div class="form-group">
-                    <label for="E-mail"> E-mail (*): </label>
-                    <input type="text" class="form-control required required" name="email" id="email" aria-describedby="txtEmail" placeholder="Enter e-mail">
-                </div>
-
-            </div>
-
-
-        </div>
-        <!-- end upload document -->
-
-        <br />
-
         <!-- loan request -->
         <div class="card">
             <div class="card-header"> Loan Request </div>
@@ -112,6 +71,8 @@
                 <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
             </div>
         </div>
+
+        <input type="hidden" id="accountID" name="accountID" value="@ViewBag.accountID" />
     </form>
 </div>
 
@@ -126,7 +87,8 @@
     </div>
 </div>
 
-<script src="~/Content/js/jquery-upload.js"></script>
+
+
 <script src="~/Content/js/function/loanCalculation.js"></script>
 <script>
     $(document).ready(function () {
@@ -146,17 +108,9 @@
     //-> handleSubmit
     function handleSubmit() {
         if (isValid()) {
-            $('#loadingIndicator').modal({
-                keyboard: false,
-                backdrop: "static"
-            });
-            
-            $(".files").upload('/account/Register?' + $("#register").serialize(), function (data) {
-                if (data.substring(0, 2) == "ok")
+            ajaxHelper("../RequestLoan/", $("#requestLoan").serialize(), requestMethod.POST).then(function (done) {
+                if (done != "")
                     $("#dvLoanRequest").html($("#dvMsg").html());
-                else
-                    alert("Error occur while processing your request...!");
-                $('#loadingIndicator').modal("hide");
             });
         }
     }

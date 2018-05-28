@@ -29,15 +29,16 @@
     </div>
 </div>
 
-<div style="height:180px"></div>
-
 <script>
     $(document).ready(function () {
         $("#btnSubmit").click(function () {
             if (isValid()) {
                 ajaxHelper("CheckInfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
+                    var url = "../Account/";
                     if (done == "")
-                        window.location.href = "../Account/Register";
+                        window.location.href = url + "Register";
+                    else
+                        window.location.href = url + "RequestLoan/" + done;
                 });
             }
         });
