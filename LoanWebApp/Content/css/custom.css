@@ -1,11 +1,14 @@
 ﻿
 body {
-    
+    /*font-family: 'Hind', sans-serif;*/
+    /*font-family: 'Merienda', cursive;*/
     font-family: 'Hind', sans-serif;
     font-size: 1em;
-        
 }
 
+.merienda {
+    font-family: 'Merienda', cursive;
+}
 
 .col-form-label {
     padding-bottom: 0px;
@@ -113,7 +116,7 @@ label {
 
 .c-hr {
     background-color: white;
-    border-top: 1px dashed #8c8b8b;
+    /*border-top: 1px dashed #8c8b8b;*/
 }
 
 .c-header {
@@ -131,4 +134,12 @@ label {
     width: 300px;
     height: 200px;
     align-content:center;
+}
+
+
+
+/* Make the image fully responsive */
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
 }

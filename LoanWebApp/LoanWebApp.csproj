@@ -154,10 +154,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\css\jquery.toast.css" />
-    <Content Include="Content\css\preloader.css" />
+    <Content Include="Content\img\1.jpg" />
+    <Content Include="Content\img\2.jpg" />
+    <Content Include="Content\img\3.jpg" />
     <Content Include="Content\js\function\loanCalculation.js" />
     <Content Include="Content\js\helper\ajaxHelper.js" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CheckLoanRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanRequestController.cs" />
@@ -205,8 +208,10 @@
     <Compile Include="Models\DTO\Account\AccountEditDTO.cs" />
     <Compile Include="Models\DTO\Account\AccountNewDTO.cs" />
     <Compile Include="Models\DTO\Account\AccountViewDTO.cs" />
+    <Compile Include="Models\DTO\Auth\LoginDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestBase.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestEditDTO.cs" />
+    <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestFindDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\CheckLoanRequestViewDTO.cs" />
     <Compile Include="Models\DTO\CheckLoanRequest\LoanRequestSubmitStatusDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentBaseDTO.cs" />
@@ -282,7 +287,6 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
-    <Content Include="Content\css\preloader.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -294,6 +298,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <None Include="Views\Shared\Basic\Slider.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -329,6 +334,9 @@
     <Content Include="Views\Shared\Basic\Footer.cshtml" />
     <Content Include="Views\Shared\LoadingIndicator.cshtml" />
     <Content Include="Views\Account\RequestLoan.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Account\CheckInfo.cshtml" />
+    <Content Include="Views\Shared\Basic\Navbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

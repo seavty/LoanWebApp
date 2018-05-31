@@ -12,15 +12,18 @@
     @Html.Partial("~/Views/Shared/Main/JS.cshtml")
 
     <title> Loan Web </title>
+
+    
 </head>
 
 <body style="background-color:#f7f7f9">
+    @Html.Partial("~/Views/Shared/Basic/Navbar.cshtml")
+
+    <br />
+    @Html.Partial("~/Views/Shared/Basic/Slider.cshtml")
+
 
     @Html.Partial("~/Views/Shared/LoadingIndicator.cshtml")
-
-
-    @Html.Partial("~/Views/Shared/Basic/Header.cshtml")
-
     <br />
 
     @RenderBody()

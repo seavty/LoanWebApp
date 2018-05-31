@@ -5,6 +5,7 @@
     <thead>
         <tr class="text-center">
             <th scope="col" width="65px">#</th>
+            <th scope="col"> Customer ID </th>
             <th scope="col"> Phone Number </th>
             <th scope="col"> E-mail </th>
             <th scope="col" width="120px"> Amount  </th>
@@ -20,12 +21,13 @@
 
         <tr>
             <th scope="row" class="text-center"> @(Model.metaData.startRow + i) </th>
+            <td> <a href=" @Url.Content("~/checkloanrequest/details/")@item.account.id"> @item.account.name </a> </td>
             <td> @item.account.phoneNumber </td>
             <td> @item.account.email  </td>
             <td class="text-right"> @item.loanRequest.amount.ToTwoDecimalPoint() </td>
             <td class="text-right"> @item.loanRequest.payDay </td>
             <td> @item.account.statusCaption </td>
-            <td> <a href="Details/@item.account.id"> Detail </a> </td>
+            <td> <a href=" @Url.Content("~/checkloanrequest/details/")@item.account.id"> Detail </a> </td>
         </tr>
             i++;
 

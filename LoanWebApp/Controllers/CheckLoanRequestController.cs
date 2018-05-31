@@ -21,17 +21,17 @@ namespace LoanWebApp.Controllers
         }
 
         // GET: CheckLoanRequest
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await handler.GetList(1));
+            return View();
         }
-
 
         //->Paging 
-        public async Task<ActionResult> Paging(int id)
+        public async Task<ActionResult> Paging(CheckLoanRequestFindDTO findDTO)
         {
-            return PartialView(await handler.GetList(id));
+            return PartialView(await handler.GetList(findDTO));
         }
+
 
         // GET: AccountViewDTOes/Details/5
         public async Task<ActionResult> Details(int id)

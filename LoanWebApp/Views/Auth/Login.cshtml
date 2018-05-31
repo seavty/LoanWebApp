@@ -1,0 +1,98 @@
+﻿@model LoanWebApp.Models.DTO.Auth.LoginDTO
+
+@{
+    /**/
+
+    ViewBag.Title = "RequestLoan";
+    Layout = "~/Views/Shared/Basic/_Basic.cshtml";
+}
+
+<div class="container" id="dvLogin">
+    <form name="login" id="login">
+        @Html.AntiForgeryToken()
+        <!-- log in -->
+        <div class="card">
+            <div class="card-header merienda"> Login </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userName)
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-user"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.userName, new { @class = "form-control required", placeholder = "User Name", @maxlength = "30" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.password)
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-unlock-alt"></i> </span>
+                        </div>
+                        @Html.PasswordFor(m => m.password, new { @class = "form-control required", placeholder = "Password", @maxlength = "30" })
+                    </div>
+                </div>
+
+               <div class="form-group">
+                    <button type="button" class="btn btn-primary merienda" id="btnLogin"> <i class="fas fa-sign-in-alt"></i> Login </button>
+                    <label id="lblMsg" class="text-danger"> </label>
+                </div>
+            </div>
+        </div>
+        <!-- end log in -->
+    </form>
+</div>
+
+<script src="~/Content/js/function/loanCalculation.js"></script>
+<script>
+    var url = "@Url.Content("~/auth")";
+    $(document).ready(function () {
+        $("#btnLogin").click(function () {
+            handleLogin();
+        });
+
+    });
+
+    //-> handleSubmit
+    function handleLogin() {
+        if (isValid()) {
+            $('#loadingIndicator').modal({
+                keyboard: false,
+                backdrop: "static"
+            });
+            var promise = new Promise(function (resolve, reject) {
+                window.setTimeout(function () {
+                    $.ajax({
+                        url: url + "/login",
+                        data: $("#login").serialize(),
+                        type: requestMethod.POST,
+                        async: false,
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            if (jqXHR.status == 404)
+                                $("#lblMsg").text("Incorrect user name or password")
+                            else
+                                alert("Error code: " + jqXHR.status + "; Message: error occured while processing your request.");
+
+                            $('#loadingIndicator').modal("hide");
+                            return;
+                        },
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            $('#loadingIndicator').modal("hide");
+                            if (data == "ok")
+                                window.location.href = "@Url.Content("~/checkloanrequest/index")";
+                            else
+                                alert("Error");
+                        }
+                    });
+                }, 100);
+            });
+            return promise;
+        }
+    }
+    
+</script>
+

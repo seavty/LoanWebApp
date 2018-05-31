@@ -5,27 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form name="checkLoanRequest" id="checkLoanRequest">
+<form name="findCustomer" id="findCustomer">
     @Html.AntiForgeryToken()
-    
+
+    <input type="hidden" name="currentPage" id="currentPage" value="1" />
     <div class="card shadow-sm border-info" id="dvAction">
-        <div class="card-body text-dark shadow-sm">
-            <button type="button" class="btn btn-primary" id="btnEdit" onclick="edit()"> <i class="fas fa-search"></i> Find </button>
+        <div class="card-body text-dark shadow-sm merienda">
+            <button type="button" class="btn btn-primary" id="btnFind" onclick="find()"> <i class="fas fa-search"></i> Find </button>
             <button type="button" class="btn btn-danger" id="btnCancel" onclick="cancel()"> <i class="fas fa-times"></i> Clear  </button>
         </div>
     </div>
-    
+
     <br />
 
     <div class="card shadow-sm" id="dvFindLoadAccount">
-        <div class="card-header"> Find Load Account </div>
+        <div class="card-header merienda"> Find Customer </div>
 
         <div class="card-body">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="phoneNumber"> Phone Number: </label>
-                        <input type="text" class="form-control required required" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumber" placeholder="Enter phone number">
+                        <label for="name"> Customer ID: </label>
+                        <input type="text" class="form-control required required" id="name" name="name" aria-describedby="name" placeholder="Customer Id">
                     </div>
                 </div>
 
@@ -52,26 +53,39 @@
             </div>
         </div>
     </div>
-    
+
     <br />
-    
+
     <div id="tblCheckLoanRequest" class="shadow-sm bg-white"></div>
 
     <br />
-    
+
 
 </form>
 
 <script>
-
+    var url = "@Url.Content("~/checkloanrequest")";
     $(document).ready(function () {
         paging(1);
     });
 
-    function paging(page) {
-        ajaxHelper("Paging/" + page, $("#register").serialize(), requestMethod.POST).then(function (done) {
+    //-> paging
+    function paging(currentPage) {
+        $("#currentPage").val(currentPage);
+        ajaxHelper(url + "/paging/", $("#findCustomer").serialize(), requestMethod.POST).then(function (done) {
             $("#tblCheckLoanRequest").html(done);
         });
+    }
+
+    //-> cancel
+    function cancel() {
+        location.reload();
+    }
+
+    //-> find 
+    function find() {
+        $("#currentPage").val(1);
+        paging(1);
     }
 
 </script>

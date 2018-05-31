@@ -37,6 +37,7 @@
           <Property Name="acct_BankAccount" Type="nvarchar" MaxLength="100" />
           <Property Name="acct_Status" Type="nvarchar" MaxLength="100" />
           <Property Name="acct_ReasonReject" Type="nvarchar" MaxLength="1000" />
+          <Property Name="acct_Name" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblLoanRequest">
           <Key>
@@ -87,6 +88,7 @@
           <Property Name="bankAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="reasonReject" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysDocument">
           <Key>
@@ -130,6 +132,7 @@
           <EntitySetMapping Name="tblAccounts">
             <EntityTypeMapping TypeName="LoanModel.tblAccount">
               <MappingFragment StoreEntitySet="tblAccount">
+                <ScalarProperty Name="name" ColumnName="acct_Name" />
                 <ScalarProperty Name="reasonReject" ColumnName="acct_ReasonReject" />
                 <ScalarProperty Name="status" ColumnName="acct_Status" />
                 <ScalarProperty Name="bankAccount" ColumnName="acct_BankAccount" />

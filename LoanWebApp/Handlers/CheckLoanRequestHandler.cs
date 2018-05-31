@@ -40,13 +40,13 @@ namespace LoanWebApp.Handlers
         }
 
         //-> GetList
-        public async Task<GetListDTO<CheckLoanRequestViewDTO>> GetList(int currentPage)
+        public async Task<GetListDTO<CheckLoanRequestViewDTO>> GetList(CheckLoanRequestFindDTO findDTO)
         {
             IQueryable<tblAccount> accounts = from a in db.tblAccounts
                                               where a.deleted == null
                                               orderby a.id ascending
                                               select a;
-            return await Listing(currentPage, accounts);
+            return await Listing(findDTO.currentPage, accounts);
         }
 
         //-> Save

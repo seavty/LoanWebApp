@@ -11,7 +11,7 @@
         @Html.AntiForgeryToken()
         <!-- upload document-->
         <div class="card shadow-sm">
-            <div class="card-header"> Personal Info </div>
+            <div class="card-header merienda"> Personal Info </div>
 
             <div class="card-body">
                 <label class="text-danger"> Note: Fields mark (*) are required.  </label>
@@ -35,7 +35,7 @@
 
                 <div class="form-group">
                     <label for="Phone Number"> Phone Number (*): </label>
-                    <input type="text" class="form-control required" name="phoneNumber" id="phoneNumber" aria-describedby="txtPhoneNumber" placeholder="Enter phone number">
+                    <input type="text" class="form-control required" name="phoneNumber" id="phoneNumber" aria-describedby="txtPhoneNumber" value="@Request.QueryString["phoneNumber"]" placeholder="Enter phone number">
                 </div>
 
                 <div class="form-group">
@@ -53,7 +53,7 @@
 
         <!-- loan request -->
         <div class="card">
-            <div class="card-header"> Loan Request </div>
+            <div class="card-header merienda"> Loan Request </div>
 
             <div class="card-body">
                 <label class="text-danger"> Note: Fields mark (*) are required.  </label>
@@ -109,7 +109,7 @@
 
         <div class="card border-info">
             <div class="card-body text-dark shadow-sm">
-                <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
+                <button type="button" class="btn btn-primary merienda" id="btnSumbit"> <i class="fas fa-upload"></i> Submit </button>
             </div>
         </div>
     </form>
@@ -118,7 +118,7 @@
 
 <div id="dvMsg" style="display:none">
     <div class="card border-info text-center">
-        <div class="card-body text-dark shadow-sm">
+        <div class="card-body text-dark shadow-sm merienda">
             <h2 class="text-success"> Your request has been successfully submitted to server! </h2>
             <br />
             <h3>We will contact you very soon.</h3>

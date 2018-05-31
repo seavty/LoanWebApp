@@ -16,5 +16,7 @@ namespace LoanWebApp.Models.DTO.Account
         public string reasonReject { get; set; }
 
         public List<DocumentViewDTO> documents { get; set; }
+
+        public string name { get; set; }
     }
 }

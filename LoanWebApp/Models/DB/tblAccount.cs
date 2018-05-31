@@ -27,5 +27,6 @@ namespace LoanWebApp.Models.DB
         public string bankAccount { get; set; }
         public string status { get; set; }
         public string reasonReject { get; set; }
+        public string name { get; set; }
     }
 }

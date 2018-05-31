@@ -1,0 +1,47 @@
+﻿@model LoanWebApp.Models.DTO.Account.AccountCheckInfo
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Basic/_Basic.cshtml";
+}
+
+<div class="container" id="dvCheckInfo">
+    <form id="checkInfo" name="checkInfo">
+        @Html.AntiForgeryToken()
+        <div class="card">
+            <div class="card-header merienda"> To request a loan please enter your phone number </div>
+            <div class="card-body">
+                <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.phoneNumber)
+                    @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control required", placeholder = "Please enter your phone number", @maxlength = "30" })
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <button type="button" class="btn btn-primary merienda" id="btnSubmit"> <i class="fas fa-upload"></i> Submit </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var url = "@Url.Content("~/account")";
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            if (isValid()) {
+                ajaxHelper(url +"/checkinfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
+                    if (done == "")
+                        window.location.href = url + "/Register?phoneNumber=" + $("#phoneNumber").val();
+                    else
+                        window.location.href = url + "/RequestLoan/" + done;
+                });
+            }
+        });
+    });
+</script>
+
+
+
+
+

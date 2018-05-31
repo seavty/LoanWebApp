@@ -8,7 +8,7 @@
         <form id="checkInfo" name="checkInfo">
             @Html.AntiForgeryToken()
             <div class="card">
-                <div class="card-header"> Phone Number </div>
+                <div class="card-header merienda"> To request a loan please enter your phone number </div>
 
                 <div class="card-body">
                     <label class="text-danger"> Note: Fields mark (*) are required.  </label>
@@ -34,7 +34,7 @@
         $("#btnSubmit").click(function () {
             if (isValid()) {
                 ajaxHelper("CheckInfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
-                    var url = "../Account/";
+                    var url = "/Account/";
                     if (done == "")
                         window.location.href = url + "Register";
                     else

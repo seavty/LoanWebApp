@@ -86,6 +86,12 @@ namespace LoanWebApp.Controllers
 
         }
 
+        // GET: Account
+        public ActionResult CheckInfo()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> CheckInfo(AccountCheckInfo checkInfo)
