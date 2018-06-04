@@ -10,7 +10,7 @@ namespace LoanWebApp.Models.DTO.Account
     public class AccountCheckInfo
     {
         [Required]
-        [MaxLength(10)]
+        [MaxLength(100)]
         [DisplayName("Phone Number (*):")]
         public string phoneNumber { get; set; }
     }

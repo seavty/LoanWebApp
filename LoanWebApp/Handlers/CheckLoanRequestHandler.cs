@@ -42,8 +42,12 @@ namespace LoanWebApp.Handlers
         //-> GetList
         public async Task<GetListDTO<CheckLoanRequestViewDTO>> GetList(CheckLoanRequestFindDTO findDTO)
         {
+            //--seem like search sql not dynamic -> should write one helper function or interface to do dynamic search
             IQueryable<tblAccount> accounts = from a in db.tblAccounts
-                                              where a.deleted == null
+                                              where a.deleted == null 
+                                              && (string.IsNullOrEmpty(findDTO.name) ? 1 == 1 : a.name.Contains(findDTO.name))
+                                              && (string.IsNullOrEmpty(findDTO.email) ? 1 ==1 : a.email.Contains(findDTO.email))
+                                              && (string.IsNullOrEmpty(findDTO.status) ? 1 == 1 : a.status == findDTO.status)
                                               orderby a.id ascending
                                               select a;
             return await Listing(findDTO.currentPage, accounts);

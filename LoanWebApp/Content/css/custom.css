@@ -143,3 +143,7 @@ label {
     width: 100%;
     height: 100%;
 }
+
+.c-background-color {
+    background-color: #f3f9fe;
+}

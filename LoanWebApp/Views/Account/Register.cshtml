@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     /**/
 
     ViewBag.Title = "Register";
@@ -81,7 +80,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="payDay"> Pay Date (*): </label>
+                    <label for="payDay"> Pay Date: </label>
                     <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDay" placeholder="Enter pay date">
                 </div>
 
@@ -107,7 +106,7 @@
 
         <br />
 
-        <div class="card border-info">
+        <div class="card">
             <div class="card-body text-dark shadow-sm">
                 <button type="button" class="btn btn-primary merienda" id="btnSumbit"> <i class="fas fa-upload"></i> Submit </button>
             </div>
@@ -129,6 +128,7 @@
 <script src="~/Content/js/jquery-upload.js"></script>
 <script src="~/Content/js/function/loanCalculation.js"></script>
 <script>
+    var url = "@Url.Content("~/account")";
     $(document).ready(function () {
         loanAmount();
 
@@ -150,8 +150,8 @@
                 keyboard: false,
                 backdrop: "static"
             });
-            
-            $(".files").upload('/account/Register?' + $("#register").serialize(), function (data) {
+
+            $(".files").upload(url + "/register?" + $("#register").serialize(), function (data) {
                 if (data.substring(0, 2) == "ok")
                     $("#dvLoanRequest").html($("#dvMsg").html());
                 else
@@ -161,4 +161,3 @@
         }
     }
 </script>
-

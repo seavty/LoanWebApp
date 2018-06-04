@@ -11,7 +11,7 @@
             <th scope="col" width="120px"> Amount  </th>
             <th scope="col" width="120px"> Pay Day  </th>
             <th scope="col" width="120px"> Status  </th>
-            <th scope="col"> Action </th>
+            
         </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
             <td class="text-right"> @item.loanRequest.amount.ToTwoDecimalPoint() </td>
             <td class="text-right"> @item.loanRequest.payDay </td>
             <td> @item.account.statusCaption </td>
-            <td> <a href=" @Url.Content("~/checkloanrequest/details/")@item.account.id"> Detail </a> </td>
+            
         </tr>
             i++;
 

@@ -38,7 +38,7 @@ namespace LoanWebApp.Helpers
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
 
-                    var createImageUniqueName = tableID + "_" + recordID + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmssfff") + ".jpg";
+                    var createImageUniqueName = tableID + "_" + recordID + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmssfff") + "_" + i + ".jpg";//in order to avoid redundant image path , use i (variable)
                     files[i].SaveAs(path + @"\" + createImageUniqueName);
 
                     

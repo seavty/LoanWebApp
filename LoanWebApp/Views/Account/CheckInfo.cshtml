@@ -8,7 +8,7 @@
 <div class="container" id="dvCheckInfo">
     <form id="checkInfo" name="checkInfo">
         @Html.AntiForgeryToken()
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-header merienda"> To request a loan please enter your phone number </div>
             <div class="card-body">
                 <label class="text-danger"> Note: Fields mark (*) are required.  </label>
@@ -32,9 +32,9 @@
             if (isValid()) {
                 ajaxHelper(url +"/checkinfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
                     if (done == "")
-                        window.location.href = url + "/Register?phoneNumber=" + $("#phoneNumber").val();
+                        window.location.href = url + "/register?phoneNumber=" + $("#phoneNumber").val();
                     else
-                        window.location.href = url + "/RequestLoan/" + done;
+                        window.location.href = url + "/requestloan/" + done;
                 });
             }
         });
