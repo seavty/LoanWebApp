@@ -11,5 +11,17 @@ namespace LoanWebApp.Extension
         {
             return value.ToString("dd/MM/yyyy");
         }
+
+        public static string ToDDMMYYYY(this DateTime? value)
+        {
+            if (value == null)
+                return "";
+            else {
+                if (!string.IsNullOrEmpty(value.ToString()))
+                    return DateTime.Parse(value.ToString()).ToString("dd/MM/yyyy");
+                else
+                    return "";
+            }
+        }
     }
 }

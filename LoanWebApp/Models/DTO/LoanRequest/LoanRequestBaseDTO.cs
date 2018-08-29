@@ -19,5 +19,11 @@ namespace LoanWebApp.Models.DTO.LoanRequest
         [Required]
         public int accountID { get; set; }
 
+        [Required]
+        public string loan_Purpose { get; set; }
+
+        [Required]
+        public string pin { get; set; }
+
     }
 }

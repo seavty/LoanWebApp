@@ -20,10 +20,13 @@ namespace LoanWebApp.Handlers
             db = new LoanEntities();
         }
 
+        //-> Create First Time : no account created yet
+        
+
         //-> SelectByID
         public async Task<LoanRequestViewDTO> SelectByID(int id)
         {
-            var loanRequest = await db.tblLoanRequests.FirstOrDefaultAsync(l => l.deleted == null && l.id == id);
+            var loanRequest = await db.tblLoanRequests.FirstOrDefaultAsync(l => l.loan_Deleted == null && l.loan_LoanRequestID == id);
             if (loanRequest == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
             return MappingHelper.MapDBClassToDTO<tblLoanRequest, LoanRequestViewDTO>(loanRequest);
@@ -33,7 +36,7 @@ namespace LoanWebApp.Handlers
         public async Task<LoanRequestViewDTO> Create(LoanRequestNewDTO loanRequestDTO)
         {
             IQueryable<tblLoanRequest>loanRequestQuery = from l in db.tblLoanRequests
-                                                where l.deleted == null
+                                                where l.loan_Deleted == null
                                                 select l;
             int countLoanRequest = await loanRequestQuery.CountAsync();
 
@@ -43,14 +46,15 @@ namespace LoanWebApp.Handlers
 
             loanRequestDTO = StringHelper.TrimStringProperties(loanRequestDTO);
             var loanRequest = (tblLoanRequest)MappingHelper.MapDTOToDBClass<LoanRequestNewDTO, tblLoanRequest>(loanRequestDTO, new tblLoanRequest());
-            loanRequest.createdDate = DateTime.Now;
-            loanRequest.payDate = DateTime.Now;
+            loanRequest.loan_CreatedDate = DateTime.Now;
+            loanRequest.loan_PayDate = DateTime.Now;
+            loanRequest.loan_Status = "Pending";
             //loanRequest.loanAmount =  Decimal.Parse((LoanRequestCalculation(loanRequestDTO)).ToString());
             loanRequest = LoanRequestCalculation(loanRequestDTO, loanRequest);
             db.tblLoanRequests.Add(loanRequest);
             await db.SaveChangesAsync();
             db.Entry(loanRequest).Reload();
-            return await SelectByID(loanRequest.id);
+            return await SelectByID(loanRequest.loan_LoanRequestID);
         }
 
         //private function 
@@ -61,20 +65,23 @@ namespace LoanWebApp.Handlers
             {
                 case 10:
                     interestRate = 10;
+                    loanRequest.loan_PayDate = DateTime.Now.AddDays(10);
                     break;
-                case 15:
+                case 20:
                     interestRate = 15;
+                    loanRequest.loan_PayDate = DateTime.Now.AddDays(15);
                     break;
                 case 30:
                     interestRate = 30;
+                    loanRequest.loan_PayDate = DateTime.Now.AddDays(30);
                     break;
                 default:
                     interestRate = 0;
                     break;
             }
-            loanRequest.interestRate = interestRate;
-            loanRequest.interestAmount = Decimal.Parse((loanRequestDTO.amount * interestRate / 100).ToString());
-            loanRequest.loanAmount = Decimal.Parse(( Decimal.Parse(loanRequestDTO.amount.ToString()) + loanRequest.interestAmount).ToString());
+            loanRequest.loan_InterestRate = interestRate;
+            loanRequest.loan_InterestAmount = Decimal.Parse((loanRequestDTO.amount * interestRate / 100).ToString());
+            loanRequest.loan_LoanAmount = Decimal.Parse(( Decimal.Parse(loanRequestDTO.amount.ToString()) + loanRequest.loan_InterestAmount).ToString());
 
             return loanRequest;
         }

@@ -14,19 +14,37 @@ namespace LoanWebApp.Models.DB
     
     public partial class tblAccount
     {
-        public int id { get; set; }
-        public Nullable<int> createdBy { get; set; }
-        public Nullable<System.DateTime> createdDate { get; set; }
-        public Nullable<int> updatedBy { get; set; }
-        public Nullable<System.DateTime> updatedDate { get; set; }
-        public string phoneNumber { get; set; }
-        public string email { get; set; }
-        public Nullable<int> deleted { get; set; }
-        public string idCard { get; set; }
-        public string employmentLetter { get; set; }
-        public string bankAccount { get; set; }
-        public string status { get; set; }
-        public string reasonReject { get; set; }
-        public string name { get; set; }
+        public int acct_AccountID { get; set; }
+        public string acct_Deleted { get; set; }
+        public Nullable<int> acct_CreatedBy { get; set; }
+        public Nullable<System.DateTime> acct_CreatedDate { get; set; }
+        public Nullable<int> acct_UpdatedBy { get; set; }
+        public Nullable<System.DateTime> acct_UpdatedDate { get; set; }
+        public Nullable<int> acct_WorkflowID { get; set; }
+        public Nullable<int> acct_WorkflowItemID { get; set; }
+        public Nullable<int> acct_ZoneID { get; set; }
+        public string acct_PhoneNumber { get; set; }
+        public string acct_Email { get; set; }
+        public string acct_IDCard { get; set; }
+        public string acct_Company { get; set; }
+        public string acct_BankAccount { get; set; }
+        public string acct_Status { get; set; }
+        public string acct_Name { get; set; }
+        public Nullable<System.DateTime> acct_DOB { get; set; }
+        public string acct_HouseNo { get; set; }
+        public string acct_Street { get; set; }
+        public string acct_Commune { get; set; }
+        public string acct_District { get; set; }
+        public string acct_Province { get; set; }
+        public string acct_BankName { get; set; }
+        public string acct_BackAccountName { get; set; }
+        public Nullable<decimal> acct_Salary { get; set; }
+        public string acct_Address { get; set; }
+        public string acct_Remark1 { get; set; }
+        public string acct_Remark2 { get; set; }
+        public string acct_Remark3 { get; set; }
+        public string acct_Verify1 { get; set; }
+        public string acct_Verify2 { get; set; }
+        public string acct_Verify3 { get; set; }
     }
 }

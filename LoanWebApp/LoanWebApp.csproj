@@ -153,17 +153,49 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Models\DTO\Account\AccountReuploadDocumentDTO.cs" />
+    <Compile Include="Resources\lang.km.Designer.cs">
+      <DependentUpon>lang.km.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ui.km.Designer.cs">
+      <DependentUpon>ui.km.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ui.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ui.resx</DependentUpon>
+    </Compile>
     <Content Include="Content\css\jquery.toast.css" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\3.jpg" />
+    <Content Include="Content\img\aboutus.png" />
+    <Content Include="Content\img\applynow.png" />
+    <Content Include="Content\img\back.jpg" />
+    <Content Include="Content\img\britain_flag.png" />
+    <Content Include="Content\img\cambodia_flag.png" />
+    <Content Include="Content\img\FAQ.png" />
+    <Content Include="Content\img\payback.png" />
     <Content Include="Content\js\function\loanCalculation.js" />
     <Content Include="Content\js\helper\ajaxHelper.js" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CheckLoanRequestController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanRequestController.cs" />
+    <Compile Include="Controllers\PaybackController.cs" />
     <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="Extension\DoubleExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,13 +226,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoanModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\sysDocument.cs">
+    <Compile Include="Models\DB\sm_doc.cs">
       <DependentUpon>LoanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\tblAccount.cs">
       <DependentUpon>LoanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\tblLoanRequest.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\tblPin.cs">
       <DependentUpon>LoanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\Account\AccountBaseDTO.cs" />
@@ -299,7 +334,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -338,6 +375,11 @@
     <Content Include="Views\Account\CheckInfo.cshtml" />
     <Content Include="Views\Shared\Basic\Navbar.cshtml" />
     <Content Include="Views\Shared\Basic\Slider.cshtml" />
+    <Content Include="Views\Payback\Index.cshtml" />
+    <Content Include="Views\Shared\Basic\_Default.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Language\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,6 +399,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\lang.km.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.km.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ui.km.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ui.km.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ui.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ui.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -14,18 +14,27 @@ namespace LoanWebApp.Models.DB
     
     public partial class tblLoanRequest
     {
-        public int id { get; set; }
-        public Nullable<int> createdBy { get; set; }
-        public Nullable<System.DateTime> createdDate { get; set; }
-        public Nullable<int> updatedBy { get; set; }
-        public Nullable<System.DateTime> updatedDate { get; set; }
-        public Nullable<int> deleted { get; set; }
-        public Nullable<int> accountID { get; set; }
-        public Nullable<decimal> amount { get; set; }
-        public Nullable<int> payDay { get; set; }
-        public Nullable<System.DateTime> payDate { get; set; }
-        public Nullable<decimal> loanAmount { get; set; }
-        public Nullable<decimal> interestRate { get; set; }
-        public Nullable<decimal> interestAmount { get; set; }
+        public int loan_LoanRequestID { get; set; }
+        public string loan_Deleted { get; set; }
+        public Nullable<int> loan_CreatedBy { get; set; }
+        public Nullable<System.DateTime> loan_CreatedDate { get; set; }
+        public Nullable<int> loan_UpdatedBy { get; set; }
+        public Nullable<System.DateTime> loan_UpdatedDate { get; set; }
+        public Nullable<int> loan_WorkflowID { get; set; }
+        public Nullable<int> loan_WorkflowItemID { get; set; }
+        public Nullable<int> loan_ZoneID { get; set; }
+        public Nullable<int> loan_AccountID { get; set; }
+        public Nullable<decimal> loan_Amount { get; set; }
+        public Nullable<int> loan_PayDay { get; set; }
+        public Nullable<System.DateTime> loan_PayDate { get; set; }
+        public Nullable<decimal> loan_LoanAmount { get; set; }
+        public Nullable<decimal> loan_InterestRate { get; set; }
+        public Nullable<decimal> loan_InterestAmount { get; set; }
+        public string loan_Purpose { get; set; }
+        public string loan_Status { get; set; }
+        public string loan_RejectReason { get; set; }
+        public string loan_Code { get; set; }
+        public Nullable<decimal> loan_PaidAmount { get; set; }
+        public Nullable<decimal> loan_Balance { get; set; }
     }
 }

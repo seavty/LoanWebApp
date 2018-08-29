@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="aboutUs" xml:space="preserve">
+    <value>អំពីយើង</value>
+  </data>
+  <data name="aboutUsContent" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;&lt;h3&gt;អំពីយើង&lt;/h3&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;span&gt;មរៀល កើតឡើងក្នុងបំណងជួយ អ្នកធ្វើការនឹងអ្នករកស៊ីដែលត្រូវការប្រាក់ភ្លាមៗ។&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល ផ្តល់ប្រាក់ដល់អ្នក ដែលត្រូវការចាំបាច់តែប៉ុណ្ណោះ ដោយ អ្នកមិនចាំបាច់ ទូរសព្ទ័ មកកាន់ មរៀល ឬ យើងខ្ញុំមិនចាំបាច់ ទូរសព្ទ័ ទៅរំខានអ្នក ។&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល ផ្តល់ប្រាក់ដល់អ្នក តាមរយះគេហទំពរ័ ឬ អ៊ែប ។&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល មានគោលដៅ ជួយដល់អ្នកធ្វើការនឹងអ្នករកស៊ីដែលត្រូវការប្រាក់ ចាំបាច់ នឹង ធានា សមភាព។&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>&lt;ul style="list-style-type:none;padding-left:0px"&gt;
+                        &lt;li&gt;
+                            អគារ A ផ្លូវលេខ 568
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            សង្កាត់ បឹងកក់ II ខណ្ឌ ទួលគោក រាជធានី ភ្នំពេញ
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            ទូរសព្ទ័លេខ: +85567 69  69 67 ឬ +85570 69 69 67
+                        &lt;/li&gt;
+                        
+                        &lt;li&gt;
+                            អ៊ីម៉ែល: &lt;a href="mailto:1riealbank@gmail.com"&gt;1rielbank@gmail.com&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            វ៉េបសាយ: &lt;a href="http://www.marielbank.com"&gt;www.marielbank.com&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;</value>
+  </data>
+  <data name="alreadyLoan" xml:space="preserve">
+    <value>You already requested a loan!</value>
+  </data>
+  <data name="applyNow" xml:space="preserve">
+    <value>ស្នើឥឡូវ</value>
+  </data>
+  <data name="emailExist" xml:space="preserve">
+    <value>អ៊ីមែលបានប្រើប្រាស់រួចហើយ</value>
+  </data>
+  <data name="followUs" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="helpCenter" xml:space="preserve">
+    <value>សំនួរ ចំលើយ</value>
+  </data>
+  <data name="helpCenterContent" xml:space="preserve">
+    <value>&lt;h3&gt;សំនួរ ចំលើយ&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;មរៀល ជា នរណា ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល កើតឡើងក្នុងបំណង់ជួយ អ្នកធ្វើការនឹងអ្នករកស៊ីដែលត្រូវការប្រាក់ភ្លាមៗ ។&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល ផ្តល់ប្រាក់ដល់អ្នក ដែលត្រូវការចាំបាច់តែប៉ុណ្ណោះ ដោយ អ្នកមិនចាំបាច់ ទូរសព្ទ័ មកកាន់ មរៀល ឬ យើងខ្ញុំមិនចាំបាច់ ទូរសព្ទ័ ទៅរំខានអ្នក ។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;តើខ្ញុំត្រូវចំណាយ កម្រៃ សេវា ប៉ុន្មាន ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;កម្រៃ សេវា&lt;/span&gt;&lt;/strong&gt;&lt;span&gt; មិនមែនជាគោលដៅទីមួយ របស់ មរៀល ទេ ។ គោលដៅទីមួយ របស់ មរៀល គឺ តើ មរៀល អាចជួយអ្នក ដោយរបៀបណា ។&amp;nbsp;  អ្នកនិងឃើញ កម្រៃ សេវា រាល់ពេល ដែលអ្នកស្នើសុំ។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;តើខ្ញុំទទួលពត៌មាន ក្រោយការស្នើសុំរបៀបណា ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;ក្រោយការស្នើសុំ អ្នកនិង ទទួលបាន អ៊ីម៉ែល មួយ បញ្ជាក់ ពីការស្នើសុំរបស់របស់អ្នក។ បន្ទាប់ ពីសំណើរត្រូវ បានសម្រេច នឹងប្រាក់បានត្រូវ ផ្ញើរ នោះ អ្នកនិងទទួលបាន អ៊ីម៉ែល មួយទៀត ជាមួយនឹងតារាងបង់ប្រាក់។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;តើនរណាអាចស្នើសុំ ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;អ្នកធ្វើការនឹងអ្នករកស៊ី ដែលអាច ផ្តល់ ឯកសារតម្រូវ ងាយៗ ។ អ្នកអាចស្នើសុំពេលណាក៏បាន ឬ ទីណាក៏បាន។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;តើខ្ញុំអាចសងមុនកាលកំណត់បាន ទេ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល លើកទឹកចិត្តអោយអ្នកសង ទាន់ កាលកំណត់ ឬ មុនកាលកំណត់ ដើម្បី ទទួលបាន ប្រវត្តិកម្ចីល្អ ។ សូម បញ្ជាក់ កម្រៃ សេវា មិនមានការប្រែប្រួល។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;តើខ្ញុំអាចសងក្រោយកាលកំណត់បាន ទេ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល មិនលើកទឹកចិត្តអោយអ្នកសង ក្រោយ កាលកំណត់ នោះ ទេ ព្រោះ អ្នក និងត្រូវ បង់ថ្លៃសេវាបន្ថែម និង ទទួល​បាន ប្រវត្តិកម្ចី មិន ល្អឡើយ ។ ថ្លៃសេវាបន្ថែមនិងត្រូវគណនា ដោយ យក ការប្រាក់ កម្ចី ចែក និង រយះពេលកម្ចី រួច គុណ ចំនួនថ្ងៃដែលយឺតយ៉ាវ។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;តើខ្ញុំអាចស្នើសុំកម្ចីមួយទៀតបានឬទេ?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;មរៀល លើកទឹកចិត្តអោយអ្នក ប្រើប្រាស់កម្ចី អោយមានប្រសិទ្ធិភាពនិងត្រឹមត្រូវ។ ដូច្នេះ តម្រូវអោយអ្នក សង កម្ចីចាស់ជាមុនសិន ទើបអាចស្នើសុំកម្ចីថ្មីបាន។&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;span&gt;​&lt;strong&gt;តើពត៌មានផ្តាល់ខ្លួនរបស់ខ្ញុំត្រូវបានរក្សាយ៉ាងដូចម្តេច?&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ជាអាទិភាព របស់ មរៀល។ ដូច្នេះ រាល់ពត៌មានដែលអ្នកបានផ្តល់អោយ មរៀល គឺត្រូវបានរក្សាទុកយ៉ាងត្រឹមត្រូវ សំរាប់ ការកត់ត្រា ដោះស្រាយទំនាស់ នឹង ប្រើប្រាស់សំរាប់ ដៃគូរ អាជីវកម្ម។&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="invalidPhoneNumber" xml:space="preserve">
+    <value>សូមពិនិត្យលេខទូរស័ព្ទម្ដងទៀត</value>
+  </data>
+  <data name="invalidPin" xml:space="preserve">
+    <value>សូមពិនិត្យលេខផ្ទៀងផ្ទាត់</value>
+  </data>
+  <data name="ourAddress" xml:space="preserve">
+    <value>អាសយដ្ឋាន</value>
+  </data>
+  <data name="payback" xml:space="preserve">
+    <value>របៀបសង</value>
+  </data>
+  <data name="paybackContent" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;&lt;h3&gt;របៀបសង&lt;/h3&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;span&gt;អ្នកអាចសង តាមរយះ គណនី &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;១- ធនាគារ វីង &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;លេខគណនី 02394993&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;២- ធនាគារ អេ ស៊ី លីដា&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;ឈ្មោះគណនី Tep Chanrith&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;លេខគណនី 2200 00 559515 26&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;ដោយបញ្ជាក់ប្រាប់ &lt;strong&gt;លេខកម្ចី&lt;/strong&gt; នឹង &lt;strong&gt;លេខទូរស័ព្ទ&lt;/strong&gt; របស់អ្នក ។&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;អ្នកត្រូវបង់ សេវាផ្ញើរប្រាក់ នៅពេល អ្នកផ្ញើរ មកកាន់យើងខ្ញុំ។ &lt;br/&gt;&lt;br/&gt;អ្នក និងទទួលបាន អ៊ីម៉ែល បញ្ជាក់ អំពីការ ទទួលប្រាក់របស់ យើងខ្ញុំ។&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="phoneExist" xml:space="preserve">
+    <value>លេខទូរស័ព្ទបានប្រើប្រាស់រួចហើយ</value>
+  </data>
+  <data name="pinExpired" xml:space="preserve">
+    <value>លេខផ្ទៀងផ្ទាត់អស់សុពលភាព</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>សូមបញ្ជាក់ពត៌មានទាំងអស់</value>
+  </data>
+  <data name="wait30" xml:space="preserve">
+    <value>សូមចាំ 30 នាទី</value>
+  </data>
+</root>

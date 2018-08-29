@@ -29,7 +29,9 @@ namespace LoanWebApp.Handlers
             var checkLoanRequest = new CheckLoanRequestViewDTO();
             checkLoanRequest.account = DoubleHelper.TwoPrecision(await accountHandler.SelectByID(id));
 
-            var loanRequest = await db.tblLoanRequests.FirstOrDefaultAsync(l => l.deleted == null && l.accountID == id);
+            var loanRequest = await db.tblLoanRequests.FirstOrDefaultAsync(l => 
+            (l.loan_Status.ToLower() != "approved" && l.loan_Status.ToLower() != "rejected")
+            && l.loan_Deleted == null && l.loan_AccountID == id);
 
             if (loanRequest == null)
                 loanRequest = new tblLoanRequest();
@@ -44,11 +46,11 @@ namespace LoanWebApp.Handlers
         {
             //--seem like search sql not dynamic -> should write one helper function or interface to do dynamic search
             IQueryable<tblAccount> accounts = from a in db.tblAccounts
-                                              where a.deleted == null 
-                                              && (string.IsNullOrEmpty(findDTO.name) ? 1 == 1 : a.name.Contains(findDTO.name))
-                                              && (string.IsNullOrEmpty(findDTO.email) ? 1 ==1 : a.email.Contains(findDTO.email))
-                                              && (string.IsNullOrEmpty(findDTO.status) ? 1 == 1 : a.status == findDTO.status)
-                                              orderby a.id ascending
+                                              where a.acct_Deleted == null 
+                                              && (string.IsNullOrEmpty(findDTO.name) ? 1 == 1 : a.acct_Name.Contains(findDTO.name))
+                                              && (string.IsNullOrEmpty(findDTO.email) ? 1 ==1 : a.acct_Email.Contains(findDTO.email))
+                                              && (string.IsNullOrEmpty(findDTO.status) ? 1 == 1 : a.acct_Status == findDTO.status)
+                                              orderby a.acct_AccountID ascending
                                               select a;
             return await Listing(findDTO.currentPage, accounts);
         }
@@ -58,14 +60,18 @@ namespace LoanWebApp.Handlers
         {
             checkLoanRequest = StringHelper.TrimStringProperties(checkLoanRequest);
 
-            tblAccount account = await db.tblAccounts.FirstOrDefaultAsync(a => a.deleted == null && a.id == checkLoanRequest.accountID);
+            tblAccount account = await db.tblAccounts.FirstOrDefaultAsync(a => a.acct_Deleted == null && a.acct_AccountID == checkLoanRequest.accountID);
             if (account == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "This record has been deleted");
 
+            /*string tmp = Helpers.StringHelper.str2Date(checkLoanRequest.acct_DOB.ToString());
+            if(tmp != "")
+            checkLoanRequest.acct_DOB = DateTime.Parse(tmp);*/
             account = (tblAccount)MappingHelper.MapDTOToDBClass<CheckLoanRequestEditDTO, tblAccount>(checkLoanRequest, account);
-            account.updatedDate = DateTime.Now;
+
+                account.acct_UpdatedDate = DateTime.Now;
             await db.SaveChangesAsync();
-            return await SelectByID(account.id);
+            return await SelectByID(account.acct_AccountID);
         }
 
         /*
@@ -88,14 +94,22 @@ namespace LoanWebApp.Handlers
 
         public async Task<CheckLoanRequestViewDTO> SubmitRequest(LoanRequestSubmitStatusDTO loanRequestDTO)
         {
-            tblAccount account = await db.tblAccounts.FirstOrDefaultAsync(a => a.deleted == null && a.id == loanRequestDTO.accountID);
+            tblAccount account = await db.tblAccounts.FirstOrDefaultAsync(a => a.acct_Deleted == null && a.acct_AccountID == loanRequestDTO.accountID);
             if (account == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "This record has been deleted");
 
             account = (tblAccount)MappingHelper.MapDTOToDBClass<LoanRequestSubmitStatusDTO, tblAccount>(loanRequestDTO, account);
-            account.updatedDate = DateTime.Now;
+            account.acct_UpdatedDate = DateTime.Now;
+            var tblLoan = db.tblLoanRequests.FirstOrDefault(x => x.loan_Deleted == null &&
+            (x.loan_Status.ToLower() != "approved" && x.loan_Status.ToLower() != "rejected") &&
+            x.loan_AccountID == account.acct_AccountID);
+            if (tblLoan != null)
+            {
+                tblLoan.loan_Status = loanRequestDTO.status;
+                tblLoan.loan_RejectReason = loanRequestDTO.reasonReject;
+            }
             await db.SaveChangesAsync();
-            return await SelectByID(account.id);
+            return await SelectByID(account.acct_AccountID);
         }
 
 

@@ -9,11 +9,11 @@ function loanAmount() {
         case 10:
             interestRate = 10;
             break;
-        case 15:
+        case 20:
             interestRate = 15;
             break;
         case 30:
-            interestRate = 30;
+            interestRate = 20;
             break;
         default:
             interestRate = 0;

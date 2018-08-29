@@ -9,18 +9,26 @@
     <form id="checkInfo" name="checkInfo">
         @Html.AntiForgeryToken()
         <div class="card shadow-sm">
-            <div class="card-header merienda"> To request a loan please enter your phone number </div>
+            <div class="card-header merienda" style="text-align:center">
+                <!--<label style="color:#000000"> Do you have phone number ?</label>-->
+                <h5> @LoanWebApp.Resources.ui.hasPhonenumber</h5>
+            </div>
             <div class="card-body">
-                <label class="text-danger"> Note: Fields mark (*) are required.  </label>
-                <hr />
-                <div class="form-group">
-                    @Html.LabelFor(m => m.phoneNumber)
-                    @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control required", placeholder = "Please enter your phone number", @maxlength = "30" })
+                <!--@Html.LabelFor(m => m.phoneNumber)-->
+                <div class="input-group" style="max-width:500px;margin:0 auto">
+
+                    @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control required", placeholder = LoanWebApp.Resources.ui.typeNumberToSubmit, @maxlength = "30" })
+                    <div class="input-group-append">
+                        <button type="button" class="btn merienda" id="btnSubmit"> <i class="fas fa-upload"></i> @LoanWebApp.Resources.ui.applyNow </button>
+                    </div>
                 </div>
             </div>
-            <div class="card-footer text-muted">
-                <button type="button" class="btn btn-primary merienda" id="btnSubmit"> <i class="fas fa-upload"></i> Submit </button>
+            <!--<div class="card-footer text-muted">
+                
             </div>
+            <hr />
+            <label class="text-danger"> Note: Fields mark (*) are required.  </label>
+               -->
         </div>
     </form>
 </div>
@@ -28,8 +36,21 @@
 <script>
     var url = "@Url.Content("~/account")";
     $(document).ready(function () {
+
+        $('input').on('keypress', function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 13) {
+                $("#btnSubmit").click();
+                return false;
+            }
+        });
+
         $("#btnSubmit").click(function () {
-            if (isValid()) {
+            if ($("#phoneNumber").val().length < 6) {
+                alert("Phone Number must be at least 6 digits");
+                return false;
+            }
+            if (isValid('@LoanWebApp.Resources.lang.required')) {
                 ajaxHelper(url +"/checkinfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
                     if (done == "")
                         window.location.href = url + "/register?phoneNumber=" + $("#phoneNumber").val();

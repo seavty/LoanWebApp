@@ -37,33 +37,39 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="payDay"> Pay Date (*): </label>
+                    <div class="form-group" style="">
+                        <label for="payDay"> REPAYMENT DATE (*): </label>
                         <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDay" placeholder="Enter pay date">
                     </div>
 
-                    <hr />
                     <div class="form-group">
+                        <label for="payDay"> REPAYMENT AMOUNT: </label>
+                        <input class="form-control" type="text" id="loanAmount" name="loanAmount" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payDay"> Purpose (*): </label>
+                        <input type="text" class="form-control" id="loan_Purpose" name="loan_Purpose" aria-describedby="loan_Purpose" placeholder="Purpose">
+                    </div>
+                    <hr />
+                    <div class="form-group" style="display:none">
                         <label for="payDay"> Interest Rate: </label>
                         <input class="form-control" type="text" id="interestRate" name="interestRate" readonly>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none">
                         <label for="payDay"> Interest Amount: </label>
                         <input class="form-control" type="text" id="interestAmount" name="interestAmount" readonly>
                     </div>
 
 
-                    <div class="form-group">
-                        <label for="payDay"> Total Amount: </label>
-                        <input class="form-control" type="text" id="loanAmount" name="loanAmount" readonly>
-                    </div>
+
 
                     <input type="hidden" id="accountID" name="accountID" value="@ViewBag.accountID" />
                 </div>
 
                 <div class="card-footer text-muted">
-                    <button type="button" class="btn btn-primary" id="btnSumbit"> <i class="fas fa-upload"></i> Submit </button>
+                    <button type="button" class="btn" id="btnSumbit"> <i class="fas fa-upload"></i> APPLY NOW </button>
                 </div>
             </div>
         </form>
@@ -73,9 +79,14 @@
 <div id="dvMsg" style="display:none">
     <div class="card border-info text-center">
         <div class="card-body text-dark shadow-sm">
-            <h2 class="text-success"> Your request has been successfully submitted to server! </h2>
-            <br />
-            <h3>We will contact you very soon.</h3>
+            <h2 class="text-success">
+                Thanks. Your money will be transferred soon as below:<br />
+                Loan amount:<br />
+                Repayment date:br/>
+                Repayment amount:br/>
+            </h2>
+            <!--<br />
+    <h3>We will contact you very soon.</h3>-->
         </div>
     </div>
 </div>
@@ -98,7 +109,7 @@
 
     //-> handleSubmit
     function handleSubmit() {
-        if (isValid()) {
+        if (isValid('@LoanWebApp.Resources.lang.required')) {
             ajaxHelper(endPoint + "LoanRequest", $("#loanRequest").serialize(), requestMethod.POST).then(function (done) {
                 $("#dvLoanRequest").html($("#dvMsg").html());
             });

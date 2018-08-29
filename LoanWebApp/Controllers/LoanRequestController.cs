@@ -29,6 +29,8 @@ namespace LoanWebApp.Controllers
 
         //-> Create new loan request
 
+        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> LoanRequest(LoanRequestNewDTO loanRequest)
@@ -45,11 +47,14 @@ namespace LoanWebApp.Controllers
             catch (Exception ex)
             {
                 if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD)
-                    Response.StatusCode = 400;
+                    Response.StatusCode = 410;
                 else
                     Response.StatusCode = 500;
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
+
+        //upload
+        //List<sm_doc> documents = await DocumentHelper.SaveUploadFiles(db, ConstantHelper.TABLE_ACCOUNT_ID, account.acct_AccountID, Request);// tmp not useful , just reserve data for using in the furture
     }
 }

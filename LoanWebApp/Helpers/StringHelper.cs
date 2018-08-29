@@ -23,5 +23,17 @@ namespace LoanWebApp.Helpers
             }
             return input;
         }
+
+        public static string str2Date(string date)
+        {
+            string re = "";
+            try
+            {
+                var tmp = date.Split('/');
+                re = tmp[2] + "/" + tmp[1] + "/" + tmp[0];
+            }
+            catch (Exception ex) { return ""; }
+            return re;
+        }
     }
 }

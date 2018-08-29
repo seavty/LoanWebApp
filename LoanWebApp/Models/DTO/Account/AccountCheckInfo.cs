@@ -11,7 +11,7 @@ namespace LoanWebApp.Models.DTO.Account
     {
         [Required]
         [MaxLength(100)]
-        [DisplayName("Phone Number (*):")]
+        [DisplayName("Type number to Submit (*):")]
         public string phoneNumber { get; set; }
     }
 }

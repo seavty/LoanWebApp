@@ -17,12 +17,26 @@
                 <button type="button" class="btn btn-dark" id="btnBack" onclick="back()"> <i class="fas fa-long-arrow-alt-left"></i> Back </button>
 
                 <button type="button" class="btn btn-primary" id="btnEdit" onclick="edit()"> <i class="fas fa-pencil-alt"></i> Edit </button>
+
                 <button type="button" class="btn btn-success" id="btnSave" onclick="save()"> <i class="fas fa-save"></i>  Save  </button>
                 <button type="button" class="btn btn-danger" id="btnCancel" onclick="cancel()"> <i class="fas fa-times"></i> Cancel  </button>
-
-                <button type="button" class="btn btn-info" id="btnSubmitForApproval"> <i class="fas fa-upload"></i> Submit For Approval  </button>
-                <button type="button" class="btn btn-success" id="btnApprove"> <i class="fas fa-check"></i> Approve </button>
-                <button type="button" class="btn btn-danger" id="btnReject"> <i class="fas fa-times"></i> Reject </button>
+                @if (Model.loanRequest.loan_Status != null)
+                {
+                    if (!string.IsNullOrEmpty(Model.account.acct_Verify1) &&
+                        !string.IsNullOrEmpty(Model.account.acct_Verify2) &&
+                        !string.IsNullOrEmpty(Model.account.acct_Verify3))
+                    {
+                        <button type="button" class="btn btn-info" id="btnSubmitForApproval"> <i class="fas fa-upload"></i> Submit For Approval  </button>
+                    }
+                }
+                @if (Model.loanRequest.loan_Status != null)
+                {
+                    if (Model.loanRequest.loan_Status.ToLower() == "SubmitForApproval".ToLower())
+                    {
+                        <button type="button" class="btn btn-success" id="btnApprove"> <i class="fas fa-check"></i> Approve</button>
+                        <button type="button" class="btn btn-danger" id="btnReject"> <i class="fas fa-times"></i> Reject</button>
+                    }
+                }
             </div>
         </div>
 
@@ -30,7 +44,9 @@
 
         <!-- Account Card -->
         <div class="card shadow-sm">
-            <div class="card-header merienda"> Customer: &nbsp; @Model.account.name </div>
+            <div class="card-header merienda">
+                Customer: &nbsp; @Model.account.name
+            </div>
             <!-- card body -->
             <div class="card-body">
 
@@ -44,9 +60,56 @@
                             </a>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control required" id="idCard" name="idCard" aria-describedby="idCard" value="@Model.account.idCard" maxlength="100" readonly>
+                            <label for="idCard">ID Card :</label>
+                            <input type="text" class="form-control required regForm" id="idCard" name="idCard" aria-describedby="idCard" value="@Model.account.idCard" maxlength="100" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="idCard">Name :</label>
+                            <input type="text" class="form-control required regForm" id="acct_FullName" name="acct_FullName" aria-describedby="acct_FullName" value="@Model.account.acct_FullName" maxlength="100" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="idCard">Date of birth :</label>
+                            @Html.TextBoxFor(m => m.account.acct_DOB, "{0:dd/MM/yyyy}")
+                            <!--<input type="text" class="form-control required regForm" id="acct_DOB" name="acct_DOB" aria-describedby="acct_DOB" value="@Model.account.acct_DOB.ToDDMMYYYY()" maxlength="100" readonly>-->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="acct_Remark1">Address :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Remark1" name="acct_Remark1" aria-describedby="acct_Remark1" value="@Model.account.acct_Remark1" maxlength="500" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="acct_Remark1">Commune :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Commune" name="acct_Commune" aria-describedby="acct_Commune" value="@Model.account.acct_Commune" maxlength="500" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="acct_Remark1">District :</label>
+                            <input type="text" class="form-control required regForm" id="acct_District" name="acct_District" aria-describedby="acct_District" value="@Model.account.acct_District" maxlength="500" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="acct_Remark1">Province :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Province" name="acct_Province" aria-describedby="acct_Province" value="@Model.account.acct_Province" maxlength="500" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            @if (string.IsNullOrEmpty(Model.account.acct_Verify1))
+                            {
+                                <select class="form-control regForm2" id="acct_Verify1" name="acct_Verify1" disabled>
+                                    <option value="">No</option>
+                                    <option value="Y">Yes</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <input type="hidden" id="acct_Verify1" name="acct_Verify1" value="@Model.account.acct_Verify1" />
+                                <label class="text-success">Verified</label>
+                            }
                         </div>
                     </div>
+
+
 
                     <div class="col">
                         <div class="form-group">
@@ -56,9 +119,39 @@
                             </a>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control required" id="employmentLetter" name="employmentLetter" aria-describedby="email" value="@Model.account.employmentLetter" maxlength="100" readonly>
+                            <label for="employmentLetter">Company Name :</label>
+                            <input type="text" class="form-control required regForm" id="employmentLetter" name="employmentLetter" aria-describedby="employmentLetter" value="@Model.account.employmentLetter" maxlength="100" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="employmentLetter">Comppany's Address :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Address" name="acct_Address" aria-describedby="acct_Address" value="@Model.account.acct_Address" maxlength="100" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="employmentLetter">Salary :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Salary" name="acct_Salary" aria-describedby="acct_Salary" value="@Model.account.acct_Salary" maxlength="100" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="acct_Remark1">Remark :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Remark2" name="acct_Remark2" aria-describedby="acct_Remark2" value="@Model.account.acct_Remark2" maxlength="500" readonly>
+                        </div>
+                        <div class="form-group">
+                            @if (string.IsNullOrEmpty(Model.account.acct_Verify2))
+                            {
+
+                                <select class="form-control regForm2" id="acct_Verify2" name="acct_Verify2" disabled>
+                                    <option value="">No</option>
+                                    <option value="Y">Yes</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <input type="hidden" id="acct_Verify2" name="acct_Verify2" value="@Model.account.acct_Verify2" />
+                                <label class="text-success">Verified</label>
+                            }
                         </div>
                     </div>
+
+
 
                     <div class="col">
                         <div class="form-group">
@@ -68,7 +161,35 @@
                             </a>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control required" id="bankAccount" name="bankAccount" aria-describedby="email" value="@Model.account.bankAccount" maxlength="100" readonly>
+                            <label for="bankAccount">Bank Account :</label>
+                            <input type="text" class="form-control required regForm" id="bankAccount" name="bankAccount" aria-describedby="bankAccount" value="@Model.account.bankAccount" maxlength="100" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="bankAccount">Bank Account Name :</label>
+                            <input type="text" class="form-control required regForm" id="acct_BackAccountName" name="acct_BackAccountName" aria-describedby="acct_BackAccountName" value="@Model.account.acct_BackAccountName" maxlength="100" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="bankAccount">Bank Name :</label>
+                            <input type="text" class="form-control required regForm" id="acct_BankName" name="acct_BankName" aria-describedby="acct_BankName" value="@Model.account.acct_BankName" maxlength="100" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="acct_Remark1">Remark :</label>
+                            <input type="text" class="form-control required regForm" id="acct_Remark3" name="acct_Remark3" aria-describedby="acct_Remark3" value="@Model.account.acct_Remark3" maxlength="500" readonly>
+                        </div>
+                        <div class="form-group">
+                            @if (string.IsNullOrEmpty(Model.account.acct_Verify3))
+                            {
+
+                                <select class="form-control regForm2" id="acct_Verify3" name="acct_Verify3" disabled>
+                                    <option value="">No</option>
+                                    <option value="Y">Yes</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <input type="hidden" id="acct_Verify3" name="acct_Verify3" value="@Model.account.acct_Verify3" />
+                                <label class="text-success">Verified</label>
+                            }
                         </div>
                     </div>
                 </div>
@@ -120,71 +241,76 @@
         <!-- end  Account Card -->
 
         <br />
+        @if (Model.loanRequest.id != 0)
+        {
+            <!-- Loan Request Card -->
+            <div class="card shadow-sm">
+                <div class="card-header merienda"> Loan Request </div>
+                <!-- card body -->
+                <div class="card-body">
+                    <!-- fieldset -->
+                    <fieldset disabled>
+                        <!--row 1-->
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="phoneNumber"> Amount: </label>
+                                    <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount" value="@Model.loanRequest.amount.ToTwoDecimalPoint()">
+                                </div>
+                            </div>
 
-        <!-- Loan Request Card -->
-        <div class="card shadow-sm">
-            <div class="card-header merienda"> Loan Request </div>
-            <!-- card body -->
-            <div class="card-body">
-                <!-- fieldset -->
-                <fieldset disabled>
-                    <!--row 1-->
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="phoneNumber"> Amount: </label>
-                                <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount" value="@Model.loanRequest.amount.ToTwoDecimalPoint()">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="payDay"> Pay day: </label>
+                                    <input type="text" class="form-control" id="payDay" name="payDay" aria-describedby="payDay" value="@Model.loanRequest.payDay">
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="payDate"> Pay Date: </label>
+                                    <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDate" value="@Model.loanRequest.payDate.ToDDMMYYYY()">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--end  row 1-->
+                        <!--row 2-->
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="interestRate"> Interest Rate: </label>
+                                    <input type="text" class="form-control" id="interestRate" name="interestRate" aria-describedby="interestRate" value="@Model.loanRequest.interestRate.ToTwoDecimalPoint()">
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="interestAmount"> Interest Amount: </label>
+                                    <input type="text" class="form-control" id="interestAmount" name="interestAmount" aria-describedby="interestAmount" value="@Model.loanRequest.interestAmount.ToTwoDecimalPoint()">
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="loanAmount"> Loan Amount: </label>
+                                    <input type="text" class="form-control" id="loanAmount" name="loanAmount" aria-describedby="loanAmount" value="@Model.loanRequest.loanAmount.ToTwoDecimalPoint()">
+                                </div>
                             </div>
                         </div>
+                        <!--end  row 2-->
+                    </fieldset>
+                    <!-- end fieldset -->
 
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="payDay"> Pay day: </label>
-                                <input type="text" class="form-control" id="payDay" name="payDay" aria-describedby="payDay" value="@Model.loanRequest.payDay">
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="payDate"> Pay Date: </label>
-                                <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDate" value="@Model.loanRequest.payDate.ToDDMMYYYY()">
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--end  row 1-->
-                    <!--row 2-->
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="interestRate"> Interest Rate: </label>
-                                <input type="text" class="form-control" id="interestRate" name="interestRate" aria-describedby="interestRate" value="@Model.loanRequest.interestRate.ToTwoDecimalPoint()">
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="interestAmount"> Interest Amount: </label>
-                                <input type="text" class="form-control" id="interestAmount" name="interestAmount" aria-describedby="interestAmount" value="@Model.loanRequest.interestAmount.ToTwoDecimalPoint()">
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="loanAmount"> Loan Amount: </label>
-                                <input type="text" class="form-control" id="loanAmount" name="loanAmount" aria-describedby="loanAmount" value="@Model.loanRequest.loanAmount.ToTwoDecimalPoint()">
-                            </div>
-                        </div>
-                    </div>
-                    <!--end  row 2-->
-                </fieldset>
-                <!-- end fieldset -->
-
+                </div>
+                <!--endcard body -->
             </div>
-            <!--endcard body -->
-        </div>
-        <!-- end  Account Card -->
-
+            <!-- end  Account Card -->
+        }
+        else
+        {
+            <div class="alert alert-info">No Pending Loan !</div>
+        }
         <div class="modal fade" id="reasonRejectModal" tabindex="-1" role="dialog" aria-labelledby="reasonRejectModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -227,20 +353,21 @@
 
     //-> setupView
     function setupView() {
-        $("#btnEdit, #btnSave, #btnCancel").hide();
-        $("#btnSubmitForApproval, #btnApprove, #btnReject").hide();
+        $("#btnSave, #btnCancel").hide();
+        //$("#btnEdit, #btnSave, #btnCancel").hide();
+        //$("#btnSubmitForApproval, #btnApprove, #btnReject").hide();
 
         if (($("#status").val() == "Pending")) {
-            $("#btnEdit").show();
+            //$("#btnEdit").show();
             if ($("#idCard").val() != "") {
-                $("#btnEdit").hide();
-                $("#btnSubmitForApproval").show();
+                //$("#btnEdit").hide();
+                //$("#btnSubmitForApproval").show();
             }
         }
         else {
             if (($("#status").val() == "SubmitForApproval")) {
-                $("#btnSubmitForApproval").hide();
-                $("#btnApprove, #btnReject").show();
+                //$("#btnSubmitForApproval").hide();
+                //$("#btnApprove, #btnReject").show();
             }
         }
     }
@@ -281,19 +408,29 @@
     function edit() {
         $("#btnEdit, #btnBack").hide();
         $("#btnSave, #btnCancel").show();
-        $("#idCard, #employmentLetter, #bankAccount").removeAttr("readonly");
+        //$("#idCard, #employmentLetter, #bankAccount").removeAttr("readonly");
+        $(".regForm").removeAttr("readonly");
+        $(".regForm2").removeAttr("disabled");
+
     }
 
     //-> save
     function save() {
-        if (isValid()) {
-            ajaxHelper(url+"/save", $("#checkLoanRequest").serialize(), requestMethod.POST).then(function (done) {
+
+        if (isValid('@LoanWebApp.Resources.lang.required')) {
+
+            ajaxHelper(url + "/save", $("#checkLoanRequest").serialize(), requestMethod.POST).then(function (done) {
+
                 window.location.reload();
-            });
+            }).catch(
+                (reason) => {
+                    alert(reason);
+                }
+                )
         }
     }
 
-    //-> back 
+    //-> back
     function back() {
         window.location.href = url + "/index";
     }
@@ -301,6 +438,7 @@
     // ------------- *** ------------//
     function submitRequest(status) {
         var data = $("#checkLoanRequest").serialize() + "&status=" + status;
+
         ajaxHelper(url+ "/submitrequest/", data, requestMethod.POST).then(function (done) {
             window.location.reload();
         });

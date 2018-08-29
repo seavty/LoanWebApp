@@ -57,7 +57,7 @@
 
     //-> handleSubmit
     function handleLogin() {
-        if (isValid()) {
+        if (isValid('@LoanWebApp.Resources.lang.required')) {
             $('#loadingIndicator').modal({
                 keyboard: false,
                 backdrop: "static"
@@ -93,6 +93,6 @@
             return promise;
         }
     }
-    
+
 </script>
 

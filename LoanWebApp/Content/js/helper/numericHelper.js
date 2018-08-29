@@ -14,5 +14,17 @@ function toFloat(number) {
 
 //-> toFloatWithDollarCurrency
 function toFloatWithDollarCurrency(number) {
-    return toFloat(number) +  " $";
+    return toFloat(number) +  " USD";
+}
+
+//->Date Add
+
+function calRepayDate(i) {
+    if (isNaN(i) || i == "") {
+        return "";
+    }
+    var d = new Date();
+    var nd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + parseInt(i));
+    return nd.getDate() + "/" + (nd.getMonth() + 1) + "/" + nd.getFullYear();
+
 }

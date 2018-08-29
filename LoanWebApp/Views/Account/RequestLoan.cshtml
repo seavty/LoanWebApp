@@ -4,62 +4,127 @@
     /**/
 
     ViewBag.Title = "RequestLoan";
-    Layout = "~/Views/Shared/Basic/_Basic.cshtml";
+    Layout = "~/Views/Shared/Basic/_Default.cshtml";
 }
 
 <div class="container" id="dvLoanRequest">
     <form name="requestLoan" id="requestLoan" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
-        <!-- loan request -->
-        <div class="card">
-            <div class="card-header"> Loan Request </div>
+
+        
+        <!-- upload document-->
+        <br />
+        <div class="card shadow-sm">
+            <div class="card-header merienda"> @LoanWebApp.Resources.ui.reupload </div>
 
             <div class="card-body">
-                <label class="text-danger"> Note: Fields mark (*) are required.  </label>
-                <hr />
+                <!--<label class="text-danger"> Note: Fields mark (*) are required.  </label>
+        <hr />-->
+
                 <div class="form-group">
-                    <label for="amount"> Amount (*): </label>
+                    <label for="IDCard" style="font-weight:bold"> @LoanWebApp.Resources.ui.idCard</label>
+                    <input type="file" class="form-control-file files" name="idCard" id="idCard" accept=".png, .jpg, .jpeg">
+                    <input type="hidden" name="idCard_change" id="idCard_change" value="0" />
+                </div>
+
+                <div class="form-group">
+                    <label for="EmploymentLetter" style="font-weight:bold"> @LoanWebApp.Resources.ui.empLetter</label>
+                    <input type="file" class="form-control-file  files" id="employmentLetter" name="employmentLetter" accept=".png, .jpg, .jpeg">
+                    <input type="hidden" name="employmentLetter_change" id="employmentLetter_change" value="0" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Bank Account" style="font-weight:bold"> @LoanWebApp.Resources.ui.bankAccount</label>
+                    <input type="file" class="form-control-file  files" id="bankAccount" name="bankAccount" accept=".png, .jpg, .jpeg">
+                    <input type="hidden" name="bankAccount_change" id="bankAccount_change" value="0" />
+                </div>
+                <hr />
+            </div>
+
+            <div class="card">
+                <div class="card-body text-dark shadow-sm">
+                    <button type="button" class="btn" id="btnSumbitDoc"> @LoanWebApp.Resources.ui.reupload </button>
+                </div>
+            </div>
+
+        </div>
+        <!-- end upload document -->
+
+        <br />
+
+        <!-- loan request -->
+        <br />
+        <div class="card">
+            <div class="card-header"> @LoanWebApp.Resources.ui.loanRequest </div>
+
+            <div class="card-body">
+                <!--<label class="text-danger"> Note: Fields mark (*) are required.  </label>
+            <hr />-->
+                <div class="form-group">
+                    <label for="amount" style="font-weight:bold"> @LoanWebApp.Resources.ui.I_need</label>
                     <select class="form-control required" id="amount" name="amount">
                         <option value=""> -- Please Select Amount -- </option>
-                        <option value="10"> 10 $ </option>
-                        <option value="20"> 20 $ </option>
-                        <option value="50"> 50 $ </option>
-                        <option value="100"> 100 $ </option>
-                        <option value="200"> 200 $ </option>
+                        <option value="10"> 10 USD </option>
+                        <option value="20"> 20 USD </option>
+                        <option value="30"> 30 USD </option>
+                        <option value="40"> 40 USD </option>
+                        <option value="50"> 50 USD </option>
+                        <option value="60"> 60 USD </option>
+                        <option value="70"> 70 USD </option>
+                        <option value="80"> 80 USD </option>
+                        <option value="90"> 90 USD </option>
+                        <option value="100"> 100 USD </option>
+                        <option value="110"> 110 USD </option>
+                        <option value="120"> 120 USD </option>
+                        <option value="130"> 130 USD </option>
+                        <option value="140"> 140 USD </option>
+                        <option value="150"> 150 USD </option>
+                        <option value="160"> 160 USD </option>
+                        <option value="170"> 170 USD </option>
+                        <option value="180"> 180 USD </option>
+                        <option value="190"> 190 USD </option>
+                        <option value="200"> 200 USD </option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="payDay"> Pay day (*): </label>
+                    <label for="payDay" style="font-weight:bold"> @LoanWebApp.Resources.ui.I_pay_in</label>
                     <select class="form-control required" id="payDay" name="payDay">
-                        <option value=""> -- Please Select Pay Day -- </option>
+                        <option value=""> -- Please Select One -- </option>
                         <option value="10"> 10 days </option>
-                        <option value="15"> 20 days </option>
+                        <option value="20"> 20 days </option>
                         <option value="30"> 30 days </option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="payDay"> Pay Date: </label>
-                    <input type="text" class="form-control" id="payDate" name="payDate" aria-describedby="payDay" placeholder="Enter pay date">
+
+                <div class="form-group" style="">
+                    <label for="payDay" style="font-weight:bold"> @LoanWebApp.Resources.ui.Repayment_Date</label>
+                    <input type="text" readonly="readonly" class="form-control" id="payDate" name="payDate" aria-describedby="payDay" placeholder="Repayment Date">
                 </div>
 
-                <hr />
                 <div class="form-group">
-                    <label for="payDay"> Interest Rate: </label>
+                    <label for="payDay" style="font-weight:bold"> @LoanWebApp.Resources.ui.Repayment_Amount</label>
+                    <input class="form-control" type="text" id="loanAmount" name="loanAmount" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="payDay" style="font-weight:bold"> @LoanWebApp.Resources.ui.Purpose</label>
+                    <input type="text" class="form-control required" id="loan_Purpose" name="loan_Purpose" aria-describedby="loan_Purpose" placeholder="Purpose">
+                </div>
+                <hr />
+                <div class="form-group" style="display:none">
+                    <label for="payDay" style="font-weight:bold"> Interest Rate</label>
                     <input class="form-control" type="text" id="interestRate" name="interestRate" readonly>
                 </div>
 
-                <div class="form-group">
-                    <label for="payDay"> Interest Amount: </label>
+                <div class="form-group" style="display:none">
+                    <label for="payDay" style="font-weight:bold"> Interest Amount</label>
                     <input class="form-control" type="text" id="interestAmount" name="interestAmount" readonly>
                 </div>
 
 
-                <div class="form-group">
-                    <label for="payDay"> Total Amount: </label>
-                    <input class="form-control" type="text" id="loanAmount" name="loanAmount" readonly>
-                </div>
+
             </div>
         </div>
         <!-- end loan request -->
@@ -68,7 +133,7 @@
 
         <div class="card">
             <div class="card-body text-dark shadow-sm">
-                <button type="button" class="btn btn-primary" id="btnSumbit"> Submit </button>
+                <button type="button" class="btn" id="btnSumbit"> @LoanWebApp.Resources.ui.applyNow </button>
             </div>
         </div>
 
@@ -78,15 +143,56 @@
 
 
 <div id="dvMsg" style="display:none">
+    <br />
     <div class="card border-info text-center">
         <div class="card-body text-dark shadow-sm">
-            <h2 class="text-success"> Your request has been successfully submitted to server! </h2>
-            <br />
-            <h3>We will contact you very soon.</h3>
+            <h4>
+                @LoanWebApp.Resources.ui.thanks_success
+            </h4>
+            <hr />
+            <h5>
+                @LoanWebApp.Resources.ui.loan_Amount: <strong><span id="lblamount"></span></strong>
+            </h5>
+            <h5>
+                @LoanWebApp.Resources.ui.Repayment_Date: <strong><span id="lblpayDate"></span></strong>
+            </h5>
+            <h5>
+                @LoanWebApp.Resources.ui.Repayment_Amount: <strong><span id="lblloanAmount"></span></strong>
+            </h5>
+            <!--<br />
+    <h3>We will contact you very soon.</h3>-->
         </div>
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal" id="dvLoanConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> @LoanWebApp.Resources.ui.confirm </h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txtPhone"> @LoanWebApp.Resources.ui.phoneNumber (*): </label>
+                    <input class="form-control" type="text" id="txtPhone" name="txtPhone">
+                </div>
+                <div class="form-group">
+                    <label for="txtPin"> @LoanWebApp.Resources.ui.pin (*): </label>
+                    <input class="form-control" type="text" id="txtPin" name="txtPin">
+                </div>
+                <hr />
+                <div>
+                    <button type="button" class="btn btn-info" id="btGetSMS" onclick="getPin(@ViewBag.accountID)"> @LoanWebApp.Resources.ui.getPIN </button>
+                    <button type="button" class="btn btn-primary" id="btConfirm" onclick="loan(@ViewBag.accountID);"> @LoanWebApp.Resources.ui.confirm </button>
+                    <button type="button" class="btn btn-danger" id="btCancel" onclick="$('#dvLoanConfirm').modal('hide')"> @LoanWebApp.Resources.ui.cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/js/jquery-upload.js"></script>
 <script src="~/Content/js/function/loanCalculation.js"></script>
 <script>
     var url = "@Url.Content("~/account")";
@@ -102,16 +208,115 @@
             handleSubmit();
         });
 
+        $("#btnSumbitDoc").click(function () {
+            handleSubmitDoc();
+        });
+
+        $("#payDay").change(function (e) {
+            $("#payDate").val(calRepayDate($("#payDay").val()));
+        });
+
     });
 
     //-> handleSubmit
     function handleSubmit() {
-        if (isValid()) {
-            ajaxHelper(url +"/requestloan?", $("#requestLoan").serialize(), requestMethod.POST).then(function (done) {
-                if (done != "")
-                    $("#dvLoanRequest").html($("#dvMsg").html());
+
+        if (isValid('@LoanWebApp.Resources.lang.required')) {
+
+
+            $("#dvLoanConfirm").modal("show");
+
+            $("#txtPin").removeClass("is-invalid");
+            $("#txtPhone").removeClass("is-invalid");
+
+            $("#txtPin").addClass("required");
+            $("#txtPhone").addClass("required");
+        }
+    }
+
+    function handleSubmitDoc() {
+        if ($("#idCard").val() != "")
+            $("#idCard_change").val(1);
+
+        if ($("#employmentLetter").val() != "")
+            $("#employmentLetter_change").val(1);
+
+
+        if ($("#bankAccount").val() != "")
+            $("#bankAccount_change").val(1);
+
+        let check = true;
+        //console.log($("#idCard").val());
+        if ($("#idCard").val() == "" && $("#employmentLetter").val() == "" && $("#bankAccount").val() == "") {
+            alert("Please upload your document in order to proceed!");
+            check =false;
+        }
+            
+        let useID = "@Url.RequestContext.RouteData.Values["id"]".replace(" ", "");
+        if (check == true) {
+            $('#loadingIndicator').modal({
+                keyboard: false,
+                backdrop: "static"
+            });
+            $(".files").upload(url + "/Reupload?id=" + useID + "&" + $("#requestLoan").serialize(), function (data) {
+                if (data.substring(0, 2) == "ok") {
+                    alert("Document Submited!");
+                    location.href = "/";
+                }
+                else
+                    alert(data);
+                $('#loadingIndicator').modal("hide");
+
             });
         }
     }
+
+    function getPin(id) {
+        if ($("#txtPhone").val() == "") {
+            alert("Phone Number Cannot Blank !");
+            return false;
+        }
+        ajaxHelper(url + "/pinrequest?", "id=" + id + "&phone=" + $("#txtPhone").val(), requestMethod.POST).then(function (done) {
+
+            if (done == true)
+                alert("PIN sent !");
+            else {
+                alert("Erorr Getting PIN !");
+            }
+
+        });
+    }
+
+    function loan(id) {
+        if (isValid('@LoanWebApp.Resources.lang.required')) {
+            ajaxHelper(url + "/requestloan?", $("#requestLoan").serialize() + "&pin=" + $("#txtPin").val(), requestMethod.POST).then(function (done) {
+                if (done != "") {
+                    $("#lblamount").text($("#amount option:selected").text());
+                    $("#lblpayDate").text($("#payDate").val());
+                    $("#lblloanAmount").text($("#loanAmount").val());
+                    $("#dvLoanRequest").html($("#dvMsg").html());
+                    $('#dvLoanConfirm').modal('hide')
+                }
+            });
+        }
+    }
+
+    function reupload(id) {
+        alert();
+        $(".files").upload(url + "/requestloan?id=" + id, function (data) {
+            if (data.substring(0, 2) == "ok") {
+                
+            }
+            else
+                alert(data);
+            $('#loadingIndicator').modal("hide");
+
+        });
+    }
+
+    $('#dvLoanConfirm').on('hidden.bs.modal', function (e) {
+        $("#txtPin").removeClass("required");
+        $("#txtPhone").removeClass("required");
+    })
 </script>
 

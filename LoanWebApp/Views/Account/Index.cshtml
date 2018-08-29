@@ -32,7 +32,7 @@
 <script>
     $(document).ready(function () {
         $("#btnSubmit").click(function () {
-            if (isValid()) {
+            if (isValid('@LoanWebApp.Resources.lang.required')) {
                 ajaxHelper("CheckInfo", $("#checkInfo").serialize(), requestMethod.POST).then(function (done) {
                     var url = "/Account/";
                     if (done == "")

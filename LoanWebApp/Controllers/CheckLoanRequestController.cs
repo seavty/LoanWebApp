@@ -51,8 +51,8 @@ namespace LoanWebApp.Controllers
                     Response.StatusCode = 200;
                     return Json(await handler.Save(checkLoanRequest), JsonRequestBehavior.AllowGet);
                 }
-                Response.StatusCode = 400;
                 return null;
+                
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace LoanWebApp.Controllers
                     Response.StatusCode = 200;
                     return Json(await handler.SubmitRequest(loanRequest), JsonRequestBehavior.AllowGet);
                 }
-                Response.StatusCode = 400;
+                Response.StatusCode = 410;
                 return null;
             }
             catch (Exception ex)

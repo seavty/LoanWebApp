@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- css -->
+    @Html.Partial("~/Views/Shared/Main/Css.cshtml")
+
+    <!-- js -->
+    @Html.Partial("~/Views/Shared/Main/JS.cshtml")
+
+    <title> MarielBank </title>
+
+
+</head>
+
+<body class="c-background-color" style="background-image:url(/Content/img/back.jpg);height: 100%;
+    background-position: center;background-repeat: no-repeat; background-size: cover;">
+    @Html.Partial("~/Views/Shared/Basic/Navbar.cshtml")
+
+    <br />
+
+    @Html.Partial("~/Views/Shared/LoadingIndicator.cshtml")
+
+    @RenderBody()
+
+    <br />
+    @Html.Partial("~/Views/Shared/Basic/Footer.cshtml")
+
+
+</body>
+
+</html>

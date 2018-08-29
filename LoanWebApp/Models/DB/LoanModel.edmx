@@ -5,123 +5,229 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LoanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="sysDocument">
+        <EntityType Name="sm_doc">
           <Key>
-            <PropertyRef Name="docs_DocumentID" />
+            <PropertyRef Name="docs_docID" />
           </Key>
-          <Property Name="docs_DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docs_docID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docs_Deleted" Type="nvarchar" MaxLength="1" />
           <Property Name="docs_CreatedBy" Type="int" />
           <Property Name="docs_CreatedDate" Type="datetime" />
           <Property Name="docs_UpdatedBy" Type="int" />
           <Property Name="docs_UpdatedDate" Type="datetime" />
-          <Property Name="docs_Deleted" Type="int" />
+          <Property Name="docs_WorkflowID" Type="int" />
+          <Property Name="docs_WorkflowItemID" Type="int" />
+          <Property Name="docs_ZoneID" Type="int" />
+          <Property Name="docs_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="docs_Description" Type="nvarchar" MaxLength="2000" />
           <Property Name="docs_TableID" Type="int" />
-          <Property Name="docs_RecordID" Type="int" />
-          <Property Name="docs_Path" Type="nvarchar" MaxLength="1000" />
-          <Property Name="docs_Name" Type="nvarchar" MaxLength="1000" />
+          <Property Name="docs_Value" Type="nvarchar" MaxLength="255" />
+          <Property Name="docs_FilePath" Type="nvarchar" MaxLength="2000" />
+          <Property Name="docs_Default" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblAccount">
           <Key>
             <PropertyRef Name="acct_AccountID" />
           </Key>
           <Property Name="acct_AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="acct_Deleted" Type="nvarchar" MaxLength="1" />
           <Property Name="acct_CreatedBy" Type="int" />
           <Property Name="acct_CreatedDate" Type="datetime" />
           <Property Name="acct_UpdatedBy" Type="int" />
           <Property Name="acct_UpdatedDate" Type="datetime" />
-          <Property Name="acct_PhoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_WorkflowID" Type="int" />
+          <Property Name="acct_WorkflowItemID" Type="int" />
+          <Property Name="acct_ZoneID" Type="int" />
+          <Property Name="acct_PhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="acct_Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="acct_Deleted" Type="int" />
           <Property Name="acct_IDCard" Type="nvarchar" MaxLength="100" />
-          <Property Name="acct_EmployementLetter" Type="nvarchar" MaxLength="100" />
-          <Property Name="acct_BankAccount" Type="nvarchar" MaxLength="100" />
-          <Property Name="acct_Status" Type="nvarchar" MaxLength="100" />
-          <Property Name="acct_ReasonReject" Type="nvarchar" MaxLength="1000" />
+          <Property Name="acct_Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_BankAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_Status" Type="nvarchar" MaxLength="50" />
           <Property Name="acct_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="acct_DOB" Type="datetime" />
+          <Property Name="acct_HouseNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="acct_Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_Commune" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_District" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_BankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_BackAccountName" Type="nvarchar" MaxLength="50" />
+          <Property Name="acct_Salary" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="acct_Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="acct_Remark1" Type="nvarchar" MaxLength="2000" />
+          <Property Name="acct_Remark2" Type="nvarchar" MaxLength="2000" />
+          <Property Name="acct_Remark3" Type="nvarchar" MaxLength="2000" />
+          <Property Name="acct_Verify1" Type="nvarchar" MaxLength="20" />
+          <Property Name="acct_Verify2" Type="nvarchar" MaxLength="20" />
+          <Property Name="acct_Verify3" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="tblLoanRequest">
           <Key>
             <PropertyRef Name="loan_LoanRequestID" />
           </Key>
           <Property Name="loan_LoanRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loan_Deleted" Type="nvarchar" MaxLength="1" />
           <Property Name="loan_CreatedBy" Type="int" />
           <Property Name="loan_CreatedDate" Type="datetime" />
           <Property Name="loan_UpdatedBy" Type="int" />
           <Property Name="loan_UpdatedDate" Type="datetime" />
-          <Property Name="loan_Deleted" Type="int" />
+          <Property Name="loan_WorkflowID" Type="int" />
+          <Property Name="loan_WorkflowItemID" Type="int" />
+          <Property Name="loan_ZoneID" Type="int" />
           <Property Name="loan_AccountID" Type="int" />
-          <Property Name="loan_Amount" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="loan_Amount" Type="numeric" Precision="18" Scale="6" />
           <Property Name="loan_PayDay" Type="int" />
           <Property Name="loan_PayDate" Type="datetime" />
-          <Property Name="loan_LoanAmount" Type="numeric" Precision="18" Scale="5" />
-          <Property Name="loan_InterestRate" Type="numeric" Precision="18" Scale="5" />
-          <Property Name="loan_InterestAmount" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="loan_LoanAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="loan_InterestRate" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="loan_InterestAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="loan_Purpose" Type="nvarchar" MaxLength="255" />
+          <Property Name="loan_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="loan_RejectReason" Type="nvarchar" MaxLength="255" />
+          <Property Name="loan_Code" Type="nvarchar" MaxLength="20" />
+          <Property Name="loan_PaidAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="loan_Balance" Type="numeric" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="tblPin">
+          <Key>
+            <PropertyRef Name="PinID" />
+          </Key>
+          <Property Name="PinID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pins_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="pins_CreatedBy" Type="int" />
+          <Property Name="pins_CreatedDate" Type="datetime" />
+          <Property Name="pins_UpdatedBy" Type="int" />
+          <Property Name="pins_UpdatedDate" Type="datetime" />
+          <Property Name="pins_WorkflowID" Type="int" />
+          <Property Name="pins_WorkflowItemID" Type="int" />
+          <Property Name="pins_ZoneID" Type="int" />
+          <Property Name="pins_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pins_Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="pins_Date" Type="datetime" />
+          <Property Name="pins_AccountID" Type="int" />
+          <Property Name="pins_isUsed" Type="nvarchar" MaxLength="20" />
+          <Property Name="pins_Phone" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="LoanModelStoreContainer">
-          <EntitySet Name="sysDocument" EntityType="Self.sysDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sm_doc" EntityType="Self.sm_doc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAccount" EntityType="Self.tblAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLoanRequest" EntityType="Self.tblLoanRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPin" EntityType="Self.tblPin" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LoanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="LoanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sm_doc" EntityType="LoanModel.sm_doc" />
           <EntitySet Name="tblAccounts" EntityType="LoanModel.tblAccount" />
-          <EntitySet Name="sysDocuments" EntityType="LoanModel.sysDocument" />
           <EntitySet Name="tblLoanRequests" EntityType="LoanModel.tblLoanRequest" />
+          <EntitySet Name="tblPins" EntityType="LoanModel.tblPin" />
         </EntityContainer>
+        <EntityType Name="sm_doc">
+          <Key>
+            <PropertyRef Name="docs_docID" />
+          </Key>
+          <Property Name="docs_docID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docs_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="docs_CreatedBy" Type="Int32" />
+          <Property Name="docs_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="docs_UpdatedBy" Type="Int32" />
+          <Property Name="docs_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="docs_WorkflowID" Type="Int32" />
+          <Property Name="docs_WorkflowItemID" Type="Int32" />
+          <Property Name="docs_ZoneID" Type="Int32" />
+          <Property Name="docs_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="docs_Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="docs_TableID" Type="Int32" />
+          <Property Name="docs_Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="docs_FilePath" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="docs_Default" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblAccount">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="acct_AccountID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="createdBy" Type="Int32" />
-          <Property Name="createdDate" Type="DateTime" Precision="3" />
-          <Property Name="updatedBy" Type="Int32" />
-          <Property Name="updatedDate" Type="DateTime" Precision="3" />
-          <Property Name="phoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="deleted" Type="Int32" />
-          <Property Name="idCard" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="employmentLetter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="bankAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="reasonReject" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="sysDocument">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="createdBy" Type="Int32" />
-          <Property Name="createdDate" Type="DateTime" Precision="3" />
-          <Property Name="updatedBy" Type="Int32" />
-          <Property Name="updatedDate" Type="DateTime" Precision="3" />
-          <Property Name="deleted" Type="Int32" />
-          <Property Name="tableID" Type="Int32" />
-          <Property Name="recordID" Type="Int32" />
-          <Property Name="path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="acct_AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="acct_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="acct_CreatedBy" Type="Int32" />
+          <Property Name="acct_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="acct_UpdatedBy" Type="Int32" />
+          <Property Name="acct_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="acct_WorkflowID" Type="Int32" />
+          <Property Name="acct_WorkflowItemID" Type="Int32" />
+          <Property Name="acct_ZoneID" Type="Int32" />
+          <Property Name="acct_PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="acct_IDCard" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="acct_BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="acct_DOB" Type="DateTime" Precision="3" />
+          <Property Name="acct_HouseNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Commune" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_BackAccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Salary" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="acct_Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Remark1" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Remark2" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Remark3" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Verify1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Verify2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="acct_Verify3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblLoanRequest">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="loan_LoanRequestID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="createdBy" Type="Int32" />
-          <Property Name="createdDate" Type="DateTime" Precision="3" />
-          <Property Name="updatedBy" Type="Int32" />
-          <Property Name="updatedDate" Type="DateTime" Precision="3" />
-          <Property Name="deleted" Type="Int32" />
-          <Property Name="accountID" Type="Int32" />
-          <Property Name="amount" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="payDay" Type="Int32" />
-          <Property Name="payDate" Type="DateTime" Precision="3" />
-          <Property Name="loanAmount" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="interestRate" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="interestAmount" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="loan_LoanRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loan_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="loan_CreatedBy" Type="Int32" />
+          <Property Name="loan_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="loan_UpdatedBy" Type="Int32" />
+          <Property Name="loan_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="loan_WorkflowID" Type="Int32" />
+          <Property Name="loan_WorkflowItemID" Type="Int32" />
+          <Property Name="loan_ZoneID" Type="Int32" />
+          <Property Name="loan_AccountID" Type="Int32" />
+          <Property Name="loan_Amount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="loan_PayDay" Type="Int32" />
+          <Property Name="loan_PayDate" Type="DateTime" Precision="3" />
+          <Property Name="loan_LoanAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="loan_InterestRate" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="loan_InterestAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="loan_Purpose" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="loan_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="loan_RejectReason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="loan_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="loan_PaidAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="loan_Balance" Type="Decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="tblPin">
+          <Key>
+            <PropertyRef Name="PinID" />
+          </Key>
+          <Property Name="PinID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pins_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="pins_CreatedBy" Type="Int32" />
+          <Property Name="pins_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="pins_UpdatedBy" Type="Int32" />
+          <Property Name="pins_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="pins_WorkflowID" Type="Int32" />
+          <Property Name="pins_WorkflowItemID" Type="Int32" />
+          <Property Name="pins_ZoneID" Type="Int32" />
+          <Property Name="pins_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pins_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="pins_Date" Type="DateTime" Precision="3" />
+          <Property Name="pins_AccountID" Type="Int32" />
+          <Property Name="pins_isUsed" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pins_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -129,58 +235,111 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LoanModelStoreContainer" CdmEntityContainer="LoanEntities">
-          <EntitySetMapping Name="tblAccounts">
-            <EntityTypeMapping TypeName="LoanModel.tblAccount">
-              <MappingFragment StoreEntitySet="tblAccount">
-                <ScalarProperty Name="name" ColumnName="acct_Name" />
-                <ScalarProperty Name="reasonReject" ColumnName="acct_ReasonReject" />
-                <ScalarProperty Name="status" ColumnName="acct_Status" />
-                <ScalarProperty Name="bankAccount" ColumnName="acct_BankAccount" />
-                <ScalarProperty Name="employmentLetter" ColumnName="acct_EmployementLetter" />
-                <ScalarProperty Name="idCard" ColumnName="acct_IDCard" />
-                <ScalarProperty Name="deleted" ColumnName="acct_Deleted" />
-                <ScalarProperty Name="email" ColumnName="acct_Email" />
-                <ScalarProperty Name="phoneNumber" ColumnName="acct_PhoneNumber" />
-                <ScalarProperty Name="updatedDate" ColumnName="acct_UpdatedDate" />
-                <ScalarProperty Name="updatedBy" ColumnName="acct_UpdatedBy" />
-                <ScalarProperty Name="createdDate" ColumnName="acct_CreatedDate" />
-                <ScalarProperty Name="createdBy" ColumnName="acct_CreatedBy" />
-                <ScalarProperty Name="id" ColumnName="acct_AccountID" />
+          <EntitySetMapping Name="sm_doc">
+            <EntityTypeMapping TypeName="LoanModel.sm_doc">
+              <MappingFragment StoreEntitySet="sm_doc">
+                <ScalarProperty Name="docs_Default" ColumnName="docs_Default" />
+                <ScalarProperty Name="docs_FilePath" ColumnName="docs_FilePath" />
+                <ScalarProperty Name="docs_Value" ColumnName="docs_Value" />
+                <ScalarProperty Name="docs_TableID" ColumnName="docs_TableID" />
+                <ScalarProperty Name="docs_Description" ColumnName="docs_Description" />
+                <ScalarProperty Name="docs_Name" ColumnName="docs_Name" />
+                <ScalarProperty Name="docs_ZoneID" ColumnName="docs_ZoneID" />
+                <ScalarProperty Name="docs_WorkflowItemID" ColumnName="docs_WorkflowItemID" />
+                <ScalarProperty Name="docs_WorkflowID" ColumnName="docs_WorkflowID" />
+                <ScalarProperty Name="docs_UpdatedDate" ColumnName="docs_UpdatedDate" />
+                <ScalarProperty Name="docs_UpdatedBy" ColumnName="docs_UpdatedBy" />
+                <ScalarProperty Name="docs_CreatedDate" ColumnName="docs_CreatedDate" />
+                <ScalarProperty Name="docs_CreatedBy" ColumnName="docs_CreatedBy" />
+                <ScalarProperty Name="docs_Deleted" ColumnName="docs_Deleted" />
+                <ScalarProperty Name="docs_docID" ColumnName="docs_docID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysDocuments">
-            <EntityTypeMapping TypeName="LoanModel.sysDocument">
-              <MappingFragment StoreEntitySet="sysDocument">
-                <ScalarProperty Name="name" ColumnName="docs_Name" />
-                <ScalarProperty Name="path" ColumnName="docs_Path" />
-                <ScalarProperty Name="recordID" ColumnName="docs_RecordID" />
-                <ScalarProperty Name="tableID" ColumnName="docs_TableID" />
-                <ScalarProperty Name="deleted" ColumnName="docs_Deleted" />
-                <ScalarProperty Name="updatedDate" ColumnName="docs_UpdatedDate" />
-                <ScalarProperty Name="updatedBy" ColumnName="docs_UpdatedBy" />
-                <ScalarProperty Name="createdDate" ColumnName="docs_CreatedDate" />
-                <ScalarProperty Name="createdBy" ColumnName="docs_CreatedBy" />
-                <ScalarProperty Name="id" ColumnName="docs_DocumentID" />
+          <EntitySetMapping Name="tblAccounts">
+            <EntityTypeMapping TypeName="LoanModel.tblAccount">
+              <MappingFragment StoreEntitySet="tblAccount">
+                <ScalarProperty Name="acct_Verify3" ColumnName="acct_Verify3" />
+                <ScalarProperty Name="acct_Verify2" ColumnName="acct_Verify2" />
+                <ScalarProperty Name="acct_Verify1" ColumnName="acct_Verify1" />
+                <ScalarProperty Name="acct_Remark3" ColumnName="acct_Remark3" />
+                <ScalarProperty Name="acct_Remark2" ColumnName="acct_Remark2" />
+                <ScalarProperty Name="acct_Remark1" ColumnName="acct_Remark1" />
+                <ScalarProperty Name="acct_Address" ColumnName="acct_Address" />
+                <ScalarProperty Name="acct_Salary" ColumnName="acct_Salary" />
+                <ScalarProperty Name="acct_BackAccountName" ColumnName="acct_BackAccountName" />
+                <ScalarProperty Name="acct_BankName" ColumnName="acct_BankName" />
+                <ScalarProperty Name="acct_Province" ColumnName="acct_Province" />
+                <ScalarProperty Name="acct_District" ColumnName="acct_District" />
+                <ScalarProperty Name="acct_Commune" ColumnName="acct_Commune" />
+                <ScalarProperty Name="acct_Street" ColumnName="acct_Street" />
+                <ScalarProperty Name="acct_HouseNo" ColumnName="acct_HouseNo" />
+                <ScalarProperty Name="acct_DOB" ColumnName="acct_DOB" />
+                <ScalarProperty Name="acct_Name" ColumnName="acct_Name" />
+                <ScalarProperty Name="acct_Status" ColumnName="acct_Status" />
+                <ScalarProperty Name="acct_BankAccount" ColumnName="acct_BankAccount" />
+                <ScalarProperty Name="acct_Company" ColumnName="acct_Company" />
+                <ScalarProperty Name="acct_IDCard" ColumnName="acct_IDCard" />
+                <ScalarProperty Name="acct_Email" ColumnName="acct_Email" />
+                <ScalarProperty Name="acct_PhoneNumber" ColumnName="acct_PhoneNumber" />
+                <ScalarProperty Name="acct_ZoneID" ColumnName="acct_ZoneID" />
+                <ScalarProperty Name="acct_WorkflowItemID" ColumnName="acct_WorkflowItemID" />
+                <ScalarProperty Name="acct_WorkflowID" ColumnName="acct_WorkflowID" />
+                <ScalarProperty Name="acct_UpdatedDate" ColumnName="acct_UpdatedDate" />
+                <ScalarProperty Name="acct_UpdatedBy" ColumnName="acct_UpdatedBy" />
+                <ScalarProperty Name="acct_CreatedDate" ColumnName="acct_CreatedDate" />
+                <ScalarProperty Name="acct_CreatedBy" ColumnName="acct_CreatedBy" />
+                <ScalarProperty Name="acct_Deleted" ColumnName="acct_Deleted" />
+                <ScalarProperty Name="acct_AccountID" ColumnName="acct_AccountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLoanRequests">
             <EntityTypeMapping TypeName="LoanModel.tblLoanRequest">
               <MappingFragment StoreEntitySet="tblLoanRequest">
-                <ScalarProperty Name="interestAmount" ColumnName="loan_InterestAmount" />
-                <ScalarProperty Name="interestRate" ColumnName="loan_InterestRate" />
-                <ScalarProperty Name="loanAmount" ColumnName="loan_LoanAmount" />
-                <ScalarProperty Name="payDate" ColumnName="loan_PayDate" />
-                <ScalarProperty Name="payDay" ColumnName="loan_PayDay" />
-                <ScalarProperty Name="amount" ColumnName="loan_Amount" />
-                <ScalarProperty Name="accountID" ColumnName="loan_AccountID" />
-                <ScalarProperty Name="deleted" ColumnName="loan_Deleted" />
-                <ScalarProperty Name="updatedDate" ColumnName="loan_UpdatedDate" />
-                <ScalarProperty Name="updatedBy" ColumnName="loan_UpdatedBy" />
-                <ScalarProperty Name="createdDate" ColumnName="loan_CreatedDate" />
-                <ScalarProperty Name="createdBy" ColumnName="loan_CreatedBy" />
-                <ScalarProperty Name="id" ColumnName="loan_LoanRequestID" />
+                <ScalarProperty Name="loan_Balance" ColumnName="loan_Balance" />
+                <ScalarProperty Name="loan_PaidAmount" ColumnName="loan_PaidAmount" />
+                <ScalarProperty Name="loan_Code" ColumnName="loan_Code" />
+                <ScalarProperty Name="loan_RejectReason" ColumnName="loan_RejectReason" />
+                <ScalarProperty Name="loan_Status" ColumnName="loan_Status" />
+                <ScalarProperty Name="loan_Purpose" ColumnName="loan_Purpose" />
+                <ScalarProperty Name="loan_InterestAmount" ColumnName="loan_InterestAmount" />
+                <ScalarProperty Name="loan_InterestRate" ColumnName="loan_InterestRate" />
+                <ScalarProperty Name="loan_LoanAmount" ColumnName="loan_LoanAmount" />
+                <ScalarProperty Name="loan_PayDate" ColumnName="loan_PayDate" />
+                <ScalarProperty Name="loan_PayDay" ColumnName="loan_PayDay" />
+                <ScalarProperty Name="loan_Amount" ColumnName="loan_Amount" />
+                <ScalarProperty Name="loan_AccountID" ColumnName="loan_AccountID" />
+                <ScalarProperty Name="loan_ZoneID" ColumnName="loan_ZoneID" />
+                <ScalarProperty Name="loan_WorkflowItemID" ColumnName="loan_WorkflowItemID" />
+                <ScalarProperty Name="loan_WorkflowID" ColumnName="loan_WorkflowID" />
+                <ScalarProperty Name="loan_UpdatedDate" ColumnName="loan_UpdatedDate" />
+                <ScalarProperty Name="loan_UpdatedBy" ColumnName="loan_UpdatedBy" />
+                <ScalarProperty Name="loan_CreatedDate" ColumnName="loan_CreatedDate" />
+                <ScalarProperty Name="loan_CreatedBy" ColumnName="loan_CreatedBy" />
+                <ScalarProperty Name="loan_Deleted" ColumnName="loan_Deleted" />
+                <ScalarProperty Name="loan_LoanRequestID" ColumnName="loan_LoanRequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPins">
+            <EntityTypeMapping TypeName="LoanModel.tblPin">
+              <MappingFragment StoreEntitySet="tblPin">
+                <ScalarProperty Name="pins_Phone" ColumnName="pins_Phone" />
+                <ScalarProperty Name="pins_isUsed" ColumnName="pins_isUsed" />
+                <ScalarProperty Name="pins_AccountID" ColumnName="pins_AccountID" />
+                <ScalarProperty Name="pins_Date" ColumnName="pins_Date" />
+                <ScalarProperty Name="pins_Status" ColumnName="pins_Status" />
+                <ScalarProperty Name="pins_Name" ColumnName="pins_Name" />
+                <ScalarProperty Name="pins_ZoneID" ColumnName="pins_ZoneID" />
+                <ScalarProperty Name="pins_WorkflowItemID" ColumnName="pins_WorkflowItemID" />
+                <ScalarProperty Name="pins_WorkflowID" ColumnName="pins_WorkflowID" />
+                <ScalarProperty Name="pins_UpdatedDate" ColumnName="pins_UpdatedDate" />
+                <ScalarProperty Name="pins_UpdatedBy" ColumnName="pins_UpdatedBy" />
+                <ScalarProperty Name="pins_CreatedDate" ColumnName="pins_CreatedDate" />
+                <ScalarProperty Name="pins_CreatedBy" ColumnName="pins_CreatedBy" />
+                <ScalarProperty Name="pins_Deleted" ColumnName="pins_Deleted" />
+                <ScalarProperty Name="PinID" ColumnName="PinID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

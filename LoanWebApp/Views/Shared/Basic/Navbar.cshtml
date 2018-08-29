@@ -1,26 +1,49 @@
-﻿<div class="container-fluid bg-dark shadow-sm merienda" id="navbar">
+﻿<script>
+    $(document).ready(function (e) {
+        
+    })
+    if (getUrlVars(window.location.href)["mobile"] != null) {
+        $("#navbar").hide();
+    }
+</script>
+<div class="container-fluid bg-dark shadow-sm merienda" id="navbar">
     <div class="container">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark stick-top">
-            <div class="container-fluid">
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark stick-top" style="background-color:#f8f9fa!important">
+            <div class="container">
                 <a class="navbar-brand" href="@Url.Content("~")"> <img src="~/Content/img/logo.png" style="width:50px; height:40px" />  </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav mr-md-auto">
-                        <a class="nav-item nav-link active">
-                            <i class="fas fa-phone-volume"></i> 012 123 456 / 017 789 654 <span class="sr-only">(current)</span> &nbsp; &nbsp; | &nbsp;
+                        <a href="@Url.Content("~")" class="nav-item nav-link active">
+                            <img style="border:none;height:40px" src="~/Content/img/applynow.png" />&nbsp;<label style="color:#000000"> @LoanWebApp.Resources.lang.applyNow </label><span class="sr-only">(current)</span> &nbsp; &nbsp;
                         </a>
-                        <a class="nav-item nav-link active">
-                            <i class="fas fa-building"></i> #123, Str. ABC Blvd, Phnom Penh, Cambodia. <span class="sr-only">(current)</span>
+                        <a href="@Url.Content("~/Payback/index")" class="nav-item nav-link active">
+                            <img style="border:none;height:40px" src="~/Content/img/payback.png" />&nbsp;<label style="color:#000000"> @LoanWebApp.Resources.lang.payback </label><span class="sr-only">(current)</span> &nbsp; &nbsp;
                         </a>
 
-                        &nbsp; <a class="nav-item nav-link active btn btn-primary btn-sm" href="@Url.Content("~/auth/login")"> <i class="fas fa-sign-in-alt"></i> Login </a>
+                        <a href="@Url.Content("~/FAQ/index")" class="nav-item nav-link active">
+                            <img style="border:none;height:40px" src="~/Content/img/FAQ.png" />&nbsp;<label style="color:#000000"> @LoanWebApp.Resources.lang.helpCenter </label><span class="sr-only">(current)</span> &nbsp; &nbsp;
+                        </a>
+                        <a href="@Url.Content("~/About/index")" class="nav-item nav-link active">
+                            <img style="border:none;height:40px" src="~/Content/img/aboutus.png" />&nbsp;<label style="color:#000000"> @LoanWebApp.Resources.lang.aboutUs </label><span class="sr-only">(current)</span>
+                        </a>
 
-
+                        
+                    </div>
+                    <div class="navbar-nav ml-md-auto">
+                        <a href="@Url.Content("~/Language/Change?langAbb=km")" class="nav-item nav-link active">
+                            <img style="border:none;height:40px;margin-left:-10px" src="~/Content/img/cambodia_flag.png" />
+                        </a>
+                        <a href="@Url.Content("~/Language/Change?langAbb=en")" class="nav-item nav-link active">
+                            <img style="border:none;height:35px;margin-top:3px" src="~/Content/img/britain_flag.png" />
+                        </a>
                     </div>
                 </div>
-            </div>
         </nav>
+        <br />
+        <br />
+        <br />
     </div>
 </div>

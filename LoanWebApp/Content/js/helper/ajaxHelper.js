@@ -6,6 +6,7 @@
 };
 
 function ajaxHelper(url, data, method) {
+    
     $('#loadingIndicator').modal({
         keyboard: false,
         backdrop: "static"
@@ -32,6 +33,7 @@ function ajaxHelper(url, data, method) {
                     $('#loadingIndicator').modal("hide");
                     resolve(data);
                 }
+                
             });
         }, 100);
     });

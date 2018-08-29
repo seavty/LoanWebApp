@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="aboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="aboutUsContent" xml:space="preserve">
+    <value>&lt;h3&gt;About Us&lt;/h3&gt;&lt;hr /&gt;
+        &lt;p&gt;&lt;strong&gt;MARIELBank&lt;/strong&gt; began with a genuine desire to help the people of Cambodians who need quick cash to meet their daily needs.&lt;/p&gt;
+        
+        &lt;p&gt;&lt;strong&gt;MARIELBank&lt;/strong&gt; provides micro and small quick loans to the employed and the business owners.&lt;/p&gt;
+        
+        &lt;p&gt;We give you quick cash only and only if you need it, not you want it. So we want to see you use it wisely. We don&amp;rsquo;t bother to call you or we are not expected you to call us either. Your privacy is our top priority.&lt;/p&gt;
+        
+        &lt;p&gt;Interest is not our first question, it&amp;rsquo;s the second. Our first is how we can help you.&lt;/p&gt;
+        &lt;p&gt;Because we give quick and easy cash without collaterals and it&amp;rsquo;s the business nature that we have to make a profit, we have to put a fair interest rate on your loan.&lt;/p&gt;
+        
+        &lt;p&gt;Customers can apply for loans in a fast and easy way that takes them only 1 minute. using website or app.&lt;/p&gt;
+        
+        &lt;p&gt;You can reach us by &lt;strong&gt;067 69 69 67&lt;/strong&gt; or &lt;strong&gt;070 69 69 67&lt;/strong&gt; or facebook &lt;a href="https://www.facebook.com/1rielbank/" target="_blank"&gt;MARIELBank&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;The employed who can provide employment letter and bank account and business owners who have business license or patent and bank account can apply for help.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;MARIELBank&lt;/strong&gt;&amp;rsquo;s mission is to help the employed people and business owners who need quick cash for good value-added purposes while offering good and fair benefits to all stakeholders in community.&lt;/p&gt;</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>&lt;ul style="list-style-type:none;padding-left:0px"&gt;
+                        &lt;li&gt;
+                            Building A Street 568 Sangkat
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            Beungkok II, Khan Toul kok, Phnom Penh, Cambodia
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            Phone: +855 67 69 69 67 or +855 70 69 69 67
+                        &lt;/li&gt;
+                        
+                        &lt;li&gt;
+                            Email: &lt;a href="mailto:1riealbank@gmail.com"&gt;1rielbank@gmail.com&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            Website: &lt;a href="http://www.marielbank.com"&gt;www.marielbank.com&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;</value>
+  </data>
+  <data name="alreadyLoan" xml:space="preserve">
+    <value>You already requested a loan!</value>
+  </data>
+  <data name="applyNow" xml:space="preserve">
+    <value>Apply Now</value>
+  </data>
+  <data name="emailExist" xml:space="preserve">
+    <value>E-mail is already exist !</value>
+  </data>
+  <data name="followUs" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="helpCenter" xml:space="preserve">
+    <value>Help Center</value>
+  </data>
+  <data name="helpCenterContent" xml:space="preserve">
+    <value>&lt;h3&gt;Help Center&lt;/h3&gt;&lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;Who we are ?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;MARIELBank is born with a genuine desire to help people.&lt;/p&gt;
+        &lt;p class="Body"&gt;We provide micro and small quick loans to the employed and the business owners.&lt;/p&gt;
+        &lt;p class="Body"&gt;We give you quick cash only and only if you need it, not you want it. So we want to see you use it wisely. We don&amp;rsquo;t bother to call you or we are not expected you to call us either. Your privacy is our top priority.&lt;/p&gt;
+        &lt;hr/&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;What is the interest rate ?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;Interest is not our first question, it&amp;rsquo;s the second. Our first is how we can help you.&lt;/p&gt;
+        &lt;p class="Body"&gt;Because we give quick and easy cash without collaterals and it&amp;rsquo;s the business nature that we have to make a profit, we have to put a fair interest rate on your loan.&lt;/p&gt;
+        &lt;p class="Body"&gt;You see loan repayment amount on each loan request you apply for.&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;How am I updated on my request?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;After you submit your loan request, you will receive an email telling you have applied for such a loan. After your loan is approved and transferred to your account, you will receive the second email along with repayment schedule.&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;Who can apply?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;Anyone can apply as long as they can provide required documents as stated on our web and our app. They can apply any time and any where.&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;How long will I receive money?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;We are committed to help you within 24 hours.&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;How can I repay?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;We can pay back on or before 3pm of due date. We don&amp;rsquo;t want to penalize you but if you are late, we charge you using your loan interest rate divided by your loan days and times late days. Again we don&amp;rsquo;t wanna penalize you. You can pay us by Wing Account 02394993 or Acleda Account Name Tep Chanrith and Account Number 2200 00 559515 26 by telling your loan number and phone number.&lt;/p&gt;
+        &lt;p class="Body" style="margin-top: 8.0pt; line-height: 120%;"&gt;&lt;span style="font-size: 12.0pt; line-height: 120%;"&gt;You pay for transfer fee when repaying your loan.&lt;/span&gt;&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;I can repay early?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;We recommend you to repay early to receive good rating so that we can help you faster next time.&lt;/p&gt;
+        &lt;hr /&gt;&lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;I can repay late?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;We do not want to penalize you and don&amp;rsquo;t want to get more interest from you. Your late payment will affect your rating and the late fee is calculated as your loan interest rate divided by your loan days and times late days.&lt;/p&gt;
+       
+        &lt;p class="Body"&gt;&lt;strong&gt;I can take another loan?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;As we wanna only help you use your money wisely, you have to pay your current loan before requesting the next one.&lt;/p&gt;
+        &lt;hr /&gt;
+        &lt;p class="Body"&gt;&lt;strong&gt;How is my privacy protected?&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class="Body"&gt;Your privacy and your convenience are our priorities. We don&amp;rsquo;t bother calling you or we are not expected you to call us either.&lt;/p&gt;
+        &lt;p class="Body"&gt;By using our service and accessing our platform, you accept and consent to terms set out in this privacy policy.&lt;/p&gt;
+        &lt;p class="Body"&gt;Information you give us to apply for loans will be used for recording database or for resolving any disputes or assisting in arrangements with our business partners.&lt;/p&gt;</value>
+  </data>
+  <data name="invalidPhoneNumber" xml:space="preserve">
+    <value>Invalid Phone Number !</value>
+  </data>
+  <data name="invalidPin" xml:space="preserve">
+    <value>Invalid PIN!</value>
+  </data>
+  <data name="ourAddress" xml:space="preserve">
+    <value>Our Address</value>
+  </data>
+  <data name="payback" xml:space="preserve">
+    <value>Payback</value>
+  </data>
+  <data name="paybackContent" xml:space="preserve">
+    <value>&lt;h3&gt;Payback Instruction&lt;/h3&gt;&lt;hr /&gt;
+        You can pay back by :&lt;br /&gt;&lt;br /&gt;
+        1- Wing Specialized Bank&lt;br/&gt; &lt;br /&gt;
+Account Number : 02394993 &lt;br /&gt;&lt;br /&gt;
+2- Acleda Bank&lt;br/&gt;&lt;br /&gt;
+        Account Name : Tep Chanrith &lt;br /&gt;&lt;br /&gt;
+        Account Number : 2200 00 559515 26 &lt;br /&gt;&lt;br /&gt;
+        By telling your &lt;strong&gt;loan number&lt;/strong&gt; and &lt;strong&gt;phone number&lt;/strong&gt;.&lt;br/&gt;&lt;br /&gt;
+        Then you will get email to confirm your payment.</value>
+  </data>
+  <data name="phoneExist" xml:space="preserve">
+    <value>Phone is already exist !</value>
+  </data>
+  <data name="pinExpired" xml:space="preserve">
+    <value>PIN Expired !</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>Please key in all required field(s)!</value>
+  </data>
+  <data name="wait30" xml:space="preserve">
+    <value>Please wait 30 more minutes to send sms again !</value>
+  </data>
+</root>

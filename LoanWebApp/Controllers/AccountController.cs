@@ -38,6 +38,103 @@ namespace LoanWebApp.Controllers
             return View();
         }
 
+        //
+
+        
+        [HttpPost]
+        [ActionName("pinrequest")]
+        public async Task<JsonResult> RequestPin_Post(int id,string phone)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new HttpException((int)HttpStatusCode.BadRequest, ConstantHelper.KEY_IN_REQUIRED_FIELD);
+
+                Response.StatusCode = 200;
+                var account = await handler.createPin(id, phone);
+                return Json(account, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (HttpException ex)
+            {
+                if (ex.Message == ConstantHelper.INVALID_PHONE ||
+                    ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN ||
+                    ex.Message == ConstantHelper.PENDING_SMS
+                    || ex.Message == ConstantHelper.PHONE_EXIST
+                    || ex.Message == ConstantHelper.EMAIL_EXIST)
+                    Response.StatusCode = 400;
+                else
+                    Response.StatusCode = 500;
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        /*
+        [HttpPost]
+        [ActionName("Reupload")]
+        public async Task<JsonResult> reupload(int id, HttpRequestBase Request)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new HttpException((int)HttpStatusCode.BadRequest, ConstantHelper.KEY_IN_REQUIRED_FIELD);
+
+                Response.StatusCode = 200;
+                var account = await handler.reupload(id, Request);
+                return Json(id, JsonRequestBehavior.AllowGet);
+                
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN
+                    || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD
+                    || ex.Message == ConstantHelper.INVALID_PIN
+                    || ex.Message == ConstantHelper.PIN_EXPIRED)
+                    Response.StatusCode = 400;
+                else
+                    Response.StatusCode = 500;
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        */
+        //--me 
+        [HttpPost]
+        [ActionName("Reupload")]
+        public async Task<ActionResult> reupload(AccountReuploadDocumentDTO reuploadDocument)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new HttpException((int)HttpStatusCode.BadRequest, ConstantHelper.KEY_IN_REQUIRED_FIELD);
+
+                Response.StatusCode = 200;
+                var account = await handler.reupload(reuploadDocument, Request);
+                //return Json(id, JsonRequestBehavior.AllowGet);
+                Response.Write("ok");
+                return null;
+                
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN
+                    || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD
+                    || ex.Message == ConstantHelper.INVALID_PIN
+                    || ex.Message == ConstantHelper.PIN_EXPIRED)
+                    Response.StatusCode = 400;
+                else
+                    Response.StatusCode = 500;
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        //--end me
+
+
         [HttpPost]
         [ActionName("RequestLoan")]
         public async Task<JsonResult> RequestLoan_Post(LoanRequestNewDTO loanRequest)
@@ -49,12 +146,15 @@ namespace LoanWebApp.Controllers
 
                 Response.StatusCode = 200;
                 var account = await handler.CreateLoanRequest(loanRequest);
-                return Json(account.id, JsonRequestBehavior.AllowGet);
+                return Json(account.acct_AccountID, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)
             {
-                if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD)
+                if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN 
+                    || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD
+                    || ex.Message == ConstantHelper.INVALID_PIN
+                    || ex.Message == ConstantHelper.PIN_EXPIRED)
                     Response.StatusCode = 400;
                 else
                     Response.StatusCode = 500;
@@ -70,14 +170,19 @@ namespace LoanWebApp.Controllers
             try
             {
                 if (ModelState.IsValid)
-                    return "ok" + (await handler.Create(account, Request)).id;
+                    return "ok" + (await handler.Create(account, Request)).acct_AccountID;
                 else
                     return "no";
 
             }
             catch (Exception ex)
             {
-                if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD)
+                if (ex.Message == ConstantHelper.ALREADY_REQUEST_LOAN
+                    || ex.Message == ConstantHelper.KEY_IN_REQUIRED_FIELD
+                    || ex.Message == ConstantHelper.INVALID_PIN
+                    || ex.Message == ConstantHelper.PIN_EXPIRED 
+                    || ex.Message == ConstantHelper.PHONE_EXIST
+                    || ex.Message == ConstantHelper.EMAIL_EXIST)
                     Response.StatusCode = 400;
                 else
                     Response.StatusCode = 500;
@@ -105,7 +210,7 @@ namespace LoanWebApp.Controllers
                 var account = await handler.CheckPhoneNumber(checkInfo);
                 if (account == null)
                     return Json("", JsonRequestBehavior.AllowGet);
-                return Json(account.id, JsonRequestBehavior.AllowGet);
+                return Json(account.acct_AccountID, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)

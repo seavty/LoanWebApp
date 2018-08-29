@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Payback";
+    Layout = "~/Views/Shared/Basic/_Default.cshtml";
+}
+
+<div style="min-height:800px" class="container">
+    <div class="card-body">
+        <!--<h3>Payback Instruction</h3><hr />
+    You can pay back by :<br />
+    Wing number : xxxxxx <br />
+    Wing number : xxxxxx <br />
+    By telling your loan number and phone number<br/>
+    Then you will get email to confirm your payment.
+        -->
+        @Html.Raw(LoanWebApp.Resources.lang.paybackContent)
+    </div>
+</div>
