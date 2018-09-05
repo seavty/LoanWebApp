@@ -41,16 +41,18 @@
                 <hr />
             </div>
 
-            <div class="card">
-                <div class="card-body text-dark shadow-sm">
-                    <button type="button" class="btn" id="btnSumbitDoc"> @LoanWebApp.Resources.ui.reupload </button>
-                </div>
-            </div>
+            <!--
+    <div class="card">
+        <div class="card-body text-dark shadow-sm">
+            <button type="button" class="btn" id="btnSumbitDoc"> @LoanWebApp.Resources.ui.reupload </button>
+        </div>
+    </div>
+        -->
 
         </div>
         <!-- end upload document -->
 
-        <br />
+        
 
         <!-- loan request -->
         <br />
@@ -220,10 +222,9 @@
 
     //-> handleSubmit
     function handleSubmit() {
-
+        
+        //--- do not remove this ---//
         if (isValid('@LoanWebApp.Resources.lang.required')) {
-
-
             $("#dvLoanConfirm").modal("show");
 
             $("#txtPin").removeClass("is-invalid");
@@ -289,6 +290,26 @@
 
     function loan(id) {
         if (isValid('@LoanWebApp.Resources.lang.required')) {
+            let useID = 0;
+            if ($("#idCard").val() != "")
+                $("#idCard_change").val(1);
+
+            if ($("#employmentLetter").val() != "")
+                $("#employmentLetter_change").val(1);
+
+
+            if ($("#bankAccount").val() != "")
+                $("#bankAccount_change").val(1);
+            $(".files").upload(url + "/requestloan?tmp=" + useID + "&" + $("#requestLoan").serialize() + "&pin=" + $("#txtPin").val(), requestMethod.POST).then(function (done) {
+                if (done != "") {
+                    $("#lblamount").text($("#amount option:selected").text());
+                    $("#lblpayDate").text($("#payDate").val());
+                    $("#lblloanAmount").text($("#loanAmount").val());
+                    $("#dvLoanRequest").html($("#dvMsg").html());
+                    $('#dvLoanConfirm').modal('hide');
+                }
+            });
+            /*
             ajaxHelper(url + "/requestloan?", $("#requestLoan").serialize() + "&pin=" + $("#txtPin").val(), requestMethod.POST).then(function (done) {
                 if (done != "") {
                     $("#lblamount").text($("#amount option:selected").text());
@@ -298,6 +319,7 @@
                     $('#dvLoanConfirm').modal('hide')
                 }
             });
+            */
         }
     }
 

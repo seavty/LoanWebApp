@@ -288,18 +288,16 @@ namespace LoanWebApp.Handlers
         }
 
         //-> CreateLoanRequest
-        public async Task<AccountViewDTO> CreateLoanRequest(LoanRequestNewDTO loanRequestDTO)
+        public async Task<AccountViewDTO> CreateLoanRequest(LoanRequestNewDTO loanRequestDTO, HttpRequestBase Request)
         {
             var account = await db.tblAccounts.FirstOrDefaultAsync(a => a.acct_Deleted == null && a.acct_AccountID == loanRequestDTO.accountID);
             if (account == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
-
-
             var loan = db.tblLoanRequests.FirstOrDefault(x => x.loan_AccountID == loanRequestDTO.accountID &&
             x.loan_Status.ToLower() != "rejected" && x.loan_Status.ToLower() != "approve" && x.loan_Balance > 0);
             if (loan != null)
                 throw new HttpException(_ErrorCode, ConstantHelper.ALREADY_REQUEST_LOAN);
-
+            //-- need to uncomment this statement
             var tblPin = db.tblPins.FirstOrDefault(x => x.pins_AccountID == account.acct_AccountID &&
             x.pins_isUsed == null && x.pins_Name == loanRequestDTO.pin);
             if (tblPin == null)
@@ -313,8 +311,10 @@ namespace LoanWebApp.Handlers
                     throw new HttpException(_ErrorCode, ConstantHelper.PIN_EXPIRED);
                 }
             }
-
             tblPin.pins_isUsed = "Y";
+            await DocumentUpload(Request, loanRequestDTO);
+
+
 
             loanRequestDTO = StringHelper.TrimStringProperties(loanRequestDTO);
             var loanRequest = await SaveToLoanRequest(
@@ -325,6 +325,46 @@ namespace LoanWebApp.Handlers
             await db.Entry(loanRequest).ReloadAsync();
             sendmail(loanRequest, account);
             return await SelectByID(int.Parse(loanRequest.loan_AccountID.ToString()));
+
+        }
+
+        private async Task<bool> DocumentUpload(HttpRequestBase Request, LoanRequestNewDTO loanRequestDTO)
+        {
+            List<sm_doc> documents = await DocumentHelper.SaveUploadFiles(db, ConstantHelper.TABLE_ACCOUNT_ID, loanRequestDTO.accountID, Request);// tmp not useful , just reserve data for using in the furture
+
+            IQueryable<sm_doc> query = from d in db.sm_doc
+                                       where d.docs_Deleted == null && d.docs_TableID == ConstantHelper.TABLE_ACCOUNT_ID && d.docs_Value == loanRequestDTO.accountID.ToString()
+                                       orderby d.docs_docID
+                                       select d;
+
+            List<sm_doc> records = await query.Take(3).ToListAsync();
+
+            int id = 0;
+            if (loanRequestDTO.idCard_change == 1)
+            {
+                id = records[0].docs_docID;
+                var tmp = await db.sm_doc.FirstOrDefaultAsync(x => x.docs_Deleted == null && x.docs_docID == id);
+                tmp.docs_Deleted = "1";
+                await db.SaveChangesAsync();
+            }
+
+            if (loanRequestDTO.employmentLetter_change == 1)
+            {
+                id = records[1].docs_docID;
+                var tmp = await db.sm_doc.FirstOrDefaultAsync(x => x.docs_Deleted == null && x.docs_docID == id);
+                tmp.docs_Deleted = "1";
+                await db.SaveChangesAsync();
+            }
+
+            if (loanRequestDTO.bankAccount_change == 1)
+            {
+                id = records[2].docs_docID;
+                var tmp = await db.sm_doc.FirstOrDefaultAsync(x => x.docs_Deleted == null && x.docs_docID == id);
+                tmp.docs_Deleted = "1";
+                await db.SaveChangesAsync();
+            }
+
+            return true;
 
         }
 
